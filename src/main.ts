@@ -1,7 +1,13 @@
 import Vue from 'vue';
+
+import CommonButton from '@/components/CommonButton.vue';
+
+import './assets/tailwind.css';
+
 import App from './App.vue';
 import router from './router';
-import './assets/tailwind.css';
+
+Vue.component('CommonButton', CommonButton);
 
 Vue.config.productionTip = false;
 
