@@ -1,13 +1,16 @@
 <template lang="pug">
-.app
-  CommonButton Click
+.app.px-8
+  CommonButtonPage
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
+import CommonButtonPage from '@/views/CommonButton.vue';
 
 const App = defineComponent({
-  // setup() {},
+  components: {
+    CommonButtonPage,
+  },
 });
 
 export default App;
