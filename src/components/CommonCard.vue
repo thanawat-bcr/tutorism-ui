@@ -1,14 +1,14 @@
 <template lang="pug">
-.common-card.flex-col.rounded-md.self-start(
+.common-card.flex.flex-col.rounded-md(
   :class="classes"
   :style="stringSize"
 )
-  .flex.items-center.p-3.rounded-tl-md.rounded-tr-md.relative(v-if="isHeaders")
+  .flex.items-center.rounded-tl-md.rounded-tr-md.relative.h-12.p-3(v-if="isHeaders")
     //- WIP back and close (wait for CommonIcon)
     .absolute.top-0.left-0(v-if="back") back
     slot(name="headers")
     .absolute.top-0.right-0(v-if="close") close
-  .flex-grow.overflow-y-auto.overflow-x-hidden.p-3(:class="contentRounded")
+  .overflow-y-auto.overflow-x-hidden.h-full.p-3(:class="contentRounded")
     slot
   .rounded-bl-md.rounded-br-md.p-3(v-if="isActions")
     slot(name="actions")
@@ -37,6 +37,7 @@ const CommonCard = defineComponent({
     const classes = computed(() => `${block.value} ${shadow.value}`);
 
     const { stringSize } = useCalcSize(props.minHeight as string, props.maxHeight as string, props.minWidth as string, props.maxWidth as string);
+
     return {
       isHeaders,
       isActions,
