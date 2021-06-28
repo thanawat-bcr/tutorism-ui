@@ -3,13 +3,23 @@
   :class="classes"
   :style="stringSize"
 )
-  .flex.items-center.rounded-tl-md.rounded-tr-md.relative.h-12.p-3(v-if="isHeaders")
-    //- WIP back and close (wait for CommonIcon)
-    .absolute.top-0.left-0(v-if="back") back
+
+  //- HEADERS
+  .flex.items-center.rounded-tl-md.rounded-tr-md.relative.h-12.p-3(
+    v-if="isHeaders"
+    :class="{ 'pl-12' : back }"
+  )
+    .absolute.left-0.px-2.cursor-pointer(v-if="back")
+      CommonIcon(src="/icon/back.svg" size='lg' @click="backHandler")
     slot(name="headers")
-    .absolute.top-0.right-0(v-if="close") close
-  .overflow-y-auto.overflow-x-hidden.h-full.p-3(:class="contentRounded")
+    .absolute.right-0.top-0.m-2.p-2.cursor-pointer(v-if="close")
+      CommonIcon(src="/icon/close.svg" size='sm' @click="closeHandler")
+
+  //- CONTENTS
+  .overflow-y-auto.overflow-x-hidden.h-full.px-3(:class="contentRounded")
     slot
+
+  //- ACTIONS - FOOTERS
   .rounded-bl-md.rounded-br-md.p-3(v-if="isActions")
     slot(name="actions")
 </template>
@@ -38,6 +48,13 @@ const CommonCard = defineComponent({
 
     const { stringSize } = useCalcSize(props.minHeight as string, props.maxHeight as string, props.minWidth as string, props.maxWidth as string);
 
+    const backHandler = () => {
+      ctx.emit('back');
+    };
+    const closeHandler = () => {
+      ctx.emit('close');
+    };
+
     return {
       isHeaders,
       isActions,
@@ -46,6 +63,9 @@ const CommonCard = defineComponent({
 
       classes,
       stringSize,
+
+      backHandler,
+      closeHandler,
     };
   },
   props: {
