@@ -1,5 +1,5 @@
 <template lang="pug">
-.common-card.flex-col.rounded-md(
+.common-card.flex-col.rounded-md.self-start(
   :class="classes"
   :style="stringSize"
 )
@@ -10,7 +10,7 @@
     .absolute.top-0.right-0(v-if="close") close
   .flex-grow.overflow-y-auto.overflow-x-hidden.p-3(:class="contentRounded")
     slot
-  .overflow-y-auto.overflow-x-hidden.rounded-bl-md.rounded-br-md.p-3(v-if="isActions")
+  .rounded-bl-md.rounded-br-md.p-3(v-if="isActions")
     slot(name="actions")
 </template>
 
