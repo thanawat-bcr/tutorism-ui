@@ -7,6 +7,12 @@ button.common-button.rounded-md.transition.duration-100.px-2(
   @click="$emit('click')"
 )
   .flex.items-center.justify-center
+    CommonIcon(
+      v-if="icon"
+      :src='icon'
+      :class="{ 'mr-1': (size === 'sm'), 'mr-2': (size !== 'sm') }"
+      size="sm"
+    )
     slot Submit
 </template>
 
@@ -108,6 +114,9 @@ const CommonButton = defineComponent({
     disabled: {
       type: Boolean,
       default: false,
+    },
+    icon: {
+      type: String,
     },
   },
 });
