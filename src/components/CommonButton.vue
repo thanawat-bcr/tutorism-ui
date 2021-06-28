@@ -11,6 +11,7 @@ button.common-button.rounded-md.transition.duration-100.px-2(
       v-if="icon"
       :src='icon'
       :class="{ 'mr-1': (size === 'sm'), 'mr-2': (size !== 'sm') }"
+      :color="iconColor"
       size="sm"
     )
     slot Submit
@@ -25,16 +26,16 @@ import {
 const CommonButton = defineComponent({
   setup(props) {
     const background = computed(() => {
-      if (props.color === 'red' || props.color === 'error') return 'bg-red-600 hover:bg-red-700 text-white';
+      if (props.color === 'red' || props.color === 'error') return 'bg-red-500 hover:bg-red-600 text-white';
       if (props.color === 'green' || props.color === 'success') return 'bg-green-500 hover:bg-green-600 text-white';
-      if (props.color === 'orange' || props.color === 'warning') return 'bg-yellow-600 hover:bg-yellow-700 text-white';
+      if (props.color === 'orange' || props.color === 'warning') return 'bg-yellow-500 hover:bg-yellow-600 text-white';
       if (props.color === 'yellow') return 'bg-yellow-400 hover:bg-yellow-500 text-white';
-      if (props.color === 'blue') return 'bg-blue-500 hover:bg-blue-600 text-white';
-      if (props.color === 'pink') return 'bg-pink-500 hover:bg-pink-600 text-white';
-      if (props.color === 'purple') return 'bg-purple-500 hover:bg-purple-600 text-white';
+      if (props.color === 'blue') return 'bg-blue-500 hover:bg-blue-500 text-white';
+      if (props.color === 'pink') return 'bg-pink-500 hover:bg-pink-500 text-white';
+      if (props.color === 'purple') return 'bg-purple-500 hover:bg-purple-500 text-white';
       if (props.color === 'white') return 'bg-gray-100 hover:bg-gray-200 text-gray-800';
-      if (props.color === 'secondary') return 'bg-secondary-600 hover:bg-secondary-700 text-white';
-      return 'bg-primary-600 hover:bg-primary-700 text-white';
+      if (props.color === 'secondary') return 'bg-secondary-500 hover:bg-secondary-600 text-white';
+      return 'bg-primary-500 hover:bg-primary-600 text-white';
     });
 
     const outline = computed(() => {
@@ -51,6 +52,12 @@ const CommonButton = defineComponent({
     });
 
     const color = computed(() => (props.outline ? outline.value : background.value));
+
+    const iconColor = computed(() => {
+      if (props.color === 'white') return 'gray';
+      if (props.outline) return props.color;
+      return 'white';
+    });
 
     const shadow = computed(() => (props.shadow ? 'hover:shadow' : ''));
 
@@ -78,6 +85,7 @@ const CommonButton = defineComponent({
     return {
       classes,
       sizeStyle,
+      iconColor,
     };
   },
   props: {
