@@ -1,5 +1,5 @@
 <template lang="pug">
-.common-icon(:class="classes")
+.common-icon(:class="classes" @click="$emit('click')")
   CommonImage(
     :src="src"
     :alt="alt"

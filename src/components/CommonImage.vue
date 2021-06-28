@@ -1,5 +1,5 @@
 <template lang="pug">
-.common-image.w-full.h-full.overflow-hidden.relative
+.common-image.w-full.h-full.overflow-hidden.relative(@click="$emit('click')")
   img.w-full.h-full.absolute.inset-0(
     :class="classes"
     :src="src"
