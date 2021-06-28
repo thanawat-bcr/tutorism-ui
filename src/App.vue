@@ -1,27 +1,24 @@
 <template lang="pug">
 .app.p-8
-  //- CommonButtonPage
-  CommonCard(
-    min-height='400'
-    max-height='600'
-    min-width='400'
-    max-width='600'
-  )
-    template(#headers): .text-xl.font-bold This is a Headers
-    template This is a Content
-    template(#actions): CommonButton(block outline) click me
+  CommonButtonPage
+  //- .flex
+    CommonCard.m-3(min-height='30rem' min-width='30rem' back close)
+      template(#headers): .text-xl.font-bold Tutorism is AWESOME!
+      template
+        CommonImage(
+          src="/image/view2.jpg"
+        )
+      template(#actions): CommonButton(block color='pink' outline) click me
+    CommonIcon(src="/icon/back.svg" size='sm')
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 import CommonButtonPage from '@/views/CommonButton.vue';
 
-import CommonCard from '@/components/CommonCard.vue';
-
 const App = defineComponent({
   components: {
     CommonButtonPage,
-    CommonCard,
   },
 });
 

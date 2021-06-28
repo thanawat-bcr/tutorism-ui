@@ -8,6 +8,7 @@
     :block="block"
     :shadow="shadow"
     :disabled="disabled"
+    icon="/icon/heart.svg"
     @click="clickHandler"
   ) Click Me
   .flex.my-4
