@@ -4,7 +4,6 @@ button.common-button.rounded-md.transition.duration-100.px-2(
   :class="classes"
   :disabled="disabled"
   :style="sizeStyle"
-  style="box-sizing:border-box;"
   @click="$emit('click')"
 )
   .flex.items-center.justify-center
@@ -33,16 +32,16 @@ const CommonButton = defineComponent({
     });
 
     const outline = computed(() => {
-      if (props.color === 'red' || props.color === 'error') return 'text-red-600 border-red-600 border-solid border hover:bg-red-50';
-      if (props.color === 'green' || props.color === 'success') return 'text-green-600 border-green-600 border-solid border hover:bg-green-50';
-      if (props.color === 'orange' || props.color === 'warning') return 'text-yellow-700 border-yellow-700 border-solid border hover:bg-yellow-50';
-      if (props.color === 'yellow') return 'text-yellow-400 border-yellow-400 border-solid border hover:bg-yellow-50';
-      if (props.color === 'blue') return 'text-blue-500 border-blue-500 border-solid border hover:bg-blue-50';
-      if (props.color === 'pink') return 'text-pink-500 border-pink-500 border-solid border hover:bg-pink-50';
-      if (props.color === 'purple') return 'text-purple-500 border-purple-500 border-solid border hover:bg-purple-50';
-      if (props.color === 'white' || props.color === 'gray' || props.color === 'grey') return 'text-gray-500 border-gray-500 border-solid border hover:bg-gray-50';
-      if (props.color === 'secondary') return 'text-secondary-600 border-secondary-600 border-solid border hover:bg-secondary-100';
-      return 'text-primary-600 border-primary-600 border-solid border hover:bg-primary-100';
+      if (props.color === 'red' || props.color === 'error') return 'text-red-600 border-red-600 border-solid border bg-white hover:bg-red-50';
+      if (props.color === 'green' || props.color === 'success') return 'text-green-600 border-green-600 border-solid border bg-white hover:bg-green-50';
+      if (props.color === 'orange' || props.color === 'warning') return 'text-yellow-700 border-yellow-700 border-solid border bg-white hover:bg-yellow-50';
+      if (props.color === 'yellow') return 'text-yellow-400 border-yellow-400 border-solid border bg-white hover:bg-yellow-50';
+      if (props.color === 'blue') return 'text-blue-500 border-blue-500 border-solid border bg-white hover:bg-blue-50';
+      if (props.color === 'pink') return 'text-pink-500 border-pink-500 border-solid border bg-white hover:bg-pink-50';
+      if (props.color === 'purple') return 'text-purple-500 border-purple-500 border-solid border bg-white hover:bg-purple-50';
+      if (props.color === 'white' || props.color === 'gray' || props.color === 'grey') return 'text-gray-500 border-gray-500 border-solid border bg-white hover:bg-gray-50';
+      if (props.color === 'secondary') return 'text-secondary-600 border-secondary-600 border-solid border bg-white hover:bg-secondary-100';
+      return 'text-primary-600 border-primary-600 border-solid border bg-white hover:bg-primary-100';
     });
 
     const color = computed(() => (props.outline ? outline.value : background.value));
