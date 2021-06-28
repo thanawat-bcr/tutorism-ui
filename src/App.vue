@@ -1,15 +1,27 @@
 <template lang="pug">
-.app.px-8
-  CommonButtonPage
+.app.p-8
+  //- CommonButtonPage
+  CommonCard(
+    min-height='400'
+    max-height='600'
+    min-width='400'
+    max-width='600'
+  )
+    template(#headers): .text-xl.font-bold This is a Headers
+    template This is a Content
+    template(#actions): CommonButton(block outline) click me
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 import CommonButtonPage from '@/views/CommonButton.vue';
 
+import CommonCard from '@/components/CommonCard.vue';
+
 const App = defineComponent({
   components: {
     CommonButtonPage,
+    CommonCard,
   },
 });
 
@@ -18,6 +30,10 @@ export default App;
 
 <style lang="scss">
 // .app {}
+*, *::before, *::after {
+  box-sizing:border-box;
+}
+
 :root {
   --color-primary-100: #E6FAF4;
   --color-primary-200: #BFF4E3;
