@@ -8,7 +8,7 @@ button.common-button.rounded-md.transition.duration-100.px-2(
   @click="$emit('click')"
 )
   .flex.items-center.justify-center
-    slot
+    slot Submit
 </template>
 
 <script lang="ts">
