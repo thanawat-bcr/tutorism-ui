@@ -41,10 +41,14 @@
             CommonIcon(icon="calendar" color="white" size="full")
       CommonCard(color="secondary" active @click="clickHandler").mx-3
         h1 Hello World
-      CommonCard(color="red" hover @click="clickHandler").mx-3
-        h1 Hello World
-      CommonCard(active @click="clickHandler").mx-3
-        h1 Hello World
+      CommonCard(color="red" hover icon="time" @click="clickHandler").mx-3
+        .flex.items-center
+          .w-16.h-16.mr-4
+            CommonIcon(icon="time" color="red" size="full")
+          h1 Hello World
+      CommonCard(active @click="clickHandler" :rounded="false" :shadow="false").mx-3
+        .flex.items-center
+          h1 Hello World
     .flex.my-3
       CommonPanel.mx-3(icon="menu-bento" @click="clickHandler") 200
         template(#subtitle) Information
@@ -52,7 +56,7 @@
         template(#subtitle) Information
       CommonPanel.mx-3(color="red" active hover @click="clickHandler") 300
         template(#subtitle) Information
-      CommonPanel.mx-3(icon="menu-bento" active hover @click="clickHandler") 500
+      CommonPanel.mx-3(icon="menu-bento" active hover @click="clickHandler" :rounded="false" :shadow="false") 500
         template(#subtitle) Information
 </template>
 
