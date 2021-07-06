@@ -6,7 +6,7 @@
   //- h4 Hello
   //- h5 Hello
   //- p paragraph
-  .flex.flex-col.items-start
+  //- .flex.flex-col.items-start
     CommonButton.my-3(size="sm" color="primary") Hello
     CommonButton.my-3(size="md" color="red" rounded) Hello
     CommonButton.my-3(size="lg" color="secondary") Hello
@@ -17,17 +17,29 @@
     CommonButton.my-3(size="md" color="red" flat) Hello
     CommonButton.my-3(size="lg" color="secondary" flat) Hello
     CommonButton.my-3(size="lg" color="secondary" flat) Hello
-  CommonFloatButton.my-3(color="error" size="sm" icon="radio-button-checked")
-  CommonFloatButton.my-3(color="error" size="md" flat icon="radio-button-checked")
-  CommonFloatButton.my-3(color="error" size="lg" outline icon="radio-button-checked")
-  CommonIcon(icon="radio-button-checked" size='lg' color='rose')
-  CommonIcon(icon="radio-button-checked" size='lg' color='primary')
+  //- CommonFloatButton.my-3(color="red" size="sm" icon="radio-button-checked")
+  //- CommonFloatButton.my-3(color="red" size="md" flat icon="radio-button-checked")
+  //- CommonFloatButton.my-3(color="red" size="lg" outline icon="radio-button-checked")
+  //- CommonIcon(icon="radio-button-checked" size='lg' color='rose')
+  //- CommonIcon(icon="radio-button-checked" size='lg' color='primary')
+  CommonChip(color="red" outline) Helloo
+  CommonChip(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
+  CommonChip(color="primary" closable) Test Primary
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
 const App = defineComponent({
+  setup() {
+    const clickHandler = () => { console.log('Clicked'); };
+    const closeHandler = () => { console.log('Closed'); };
+
+    return {
+      clickHandler,
+      closeHandler,
+    };
+  },
 });
 
 export default App;
