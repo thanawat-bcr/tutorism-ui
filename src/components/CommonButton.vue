@@ -1,5 +1,5 @@
 <template lang="pug">
-button.common-button.transition.duration-100.px-2(
+button.common-button.transition.duration-100.px-4(
   :type="type"
   :class="classes"
   :disabled="disabled"
@@ -30,10 +30,10 @@ const CommonButton = defineComponent({
     const hover = ref(false);
 
     const size = computed(() => {
-      if (props.size === 'sm') return 'h-6 h4 min-width-sm';
-      if (props.size === 'md') return 'h-8 h4 min-width-md';
-      if (props.size === 'lg') return 'h-10 h3 min-width-lg';
-      return 'h-8 h4 min-width-md';
+      if (props.size === 'sm') return 'h-8 h4 min-width-sm';
+      if (props.size === 'md') return 'h-10 h3 min-width-md';
+      if (props.size === 'lg') return 'h-12 h2 min-width-lg';
+      return 'h-10 h3 min-width-md';
     });
 
     const color = computed(() => {
@@ -70,10 +70,10 @@ const CommonButton = defineComponent({
     });
 
     const iconSize = computed(() => {
-      if (props.size === 'sm') return 'h-2 w-2 mr-1';
-      if (props.size === 'md') return 'h-3 w-3 mr-2';
-      if (props.size === 'lg') return 'h-4 w-4 mr-2';
-      return 'h-3 w-3 mr-2';
+      if (props.size === 'sm') return 'h-4 w-4 mr-1';
+      if (props.size === 'md') return 'h-5 w-5 mr-2';
+      if (props.size === 'lg') return 'h-6 w-6 mr-2';
+      return 'h-5 w-5 mr-2';
     });
 
     const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);

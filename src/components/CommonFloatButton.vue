@@ -28,10 +28,10 @@ const CommonFloatButton = defineComponent({
     const hover = ref(false);
 
     const size = computed(() => {
-      if (props.size === 'sm') return 'h-6 w-6';
-      if (props.size === 'md') return 'h-8 w-8';
-      if (props.size === 'lg') return 'h-10 w-10';
-      return 'h-8 w-8';
+      if (props.size === 'sm') return 'h-8 w-8';
+      if (props.size === 'md') return 'h-10 w-10';
+      if (props.size === 'lg') return 'h-12 w-12';
+      return 'h-10 w-10';
     });
 
     const color = computed(() => {
@@ -62,10 +62,10 @@ const CommonFloatButton = defineComponent({
     });
 
     const iconSize = computed(() => {
-      if (props.size === 'sm') return 'h-2 w-2';
-      if (props.size === 'md') return 'h-3 w-3';
-      if (props.size === 'lg') return 'h-4 w-4';
-      return 'h-3 w-3';
+      if (props.size === 'sm') return 'h-4 w-4';
+      if (props.size === 'md') return 'h-5 w-5';
+      if (props.size === 'lg') return 'h-6 w-6';
+      return 'h-5 w-5';
     });
 
     const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
@@ -113,15 +113,6 @@ export default CommonFloatButton;
 </script>
 
 <style lang="scss">
-.common-float-button {
-  &.min-width-sm {
-    min-width: 4rem;
-  }
-  &.min-width-md {
-    min-width: 6rem;
-  }
-  &.min-width-lg {
-    min-width: 8rem;
-  }
-}
+// .common-float-button {
+// }
 </style>

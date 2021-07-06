@@ -7,19 +7,19 @@
   //- h5 Hello
   //- p paragraph
   .flex.flex-col.items-start
-    CommonButton.my-3(size="sm" color="primary" icon="checkbox-checked") Hello
-    CommonButton.my-3(size="md" color="red" rounded icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" color="secondary" icon="checkbox-checked") Hello
-    CommonButton.my-3(size="sm" color="primary" outline icon="checkbox-checked") Hello
-    CommonButton.my-3(size="md" color="red" outline rounded icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" color="secondary" outline icon="checkbox-checked") Hello
-    CommonButton.my-3(size="sm" color="primary" flat icon="checkbox-checked") Hello
-    CommonButton.my-3(size="md" color="red" flat icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" color="secondary" flat icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" color="secondary" flat icon="checkbox-checked") Hello
-  CommonFloatButton.my-3(color="error" size="sm" outline icon="checkbox-checked")
-  CommonFloatButton.my-3(color="error" size="md" outline icon="checkbox-checked")
-  CommonFloatButton.my-3(color="error" size="lg" outline icon="checkbox-checked")
+    CommonButton.my-3(size="sm" color="primary") Hello
+    CommonButton.my-3(size="md" color="red" rounded) Hello
+    CommonButton.my-3(size="lg" color="secondary") Hello
+    CommonButton.my-3(size="sm" color="primary" outline) Hello
+    CommonButton.my-3(size="md" color="red" outline rounded) Hello
+    CommonButton.my-3(size="lg" color="secondary" outline) Hello
+    CommonButton.my-3(size="sm" color="primary" flat) Hello
+    CommonButton.my-3(size="md" color="red" flat) Hello
+    CommonButton.my-3(size="lg" color="secondary" flat) Hello
+    CommonButton.my-3(size="lg" color="secondary" flat) Hello
+  CommonFloatButton.my-3(color="error" size="sm" icon="radio-button-checked")
+  CommonFloatButton.my-3(color="error" size="md" flat icon="radio-button-checked")
+  CommonFloatButton.my-3(color="error" size="lg" outline icon="radio-button-checked")
   CommonIcon(icon="radio-button-checked" size='lg' color='rose')
   CommonIcon(icon="radio-button-checked" size='lg' color='primary')
 </template>
