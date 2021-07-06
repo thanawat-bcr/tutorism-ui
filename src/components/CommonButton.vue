@@ -25,6 +25,8 @@ import {
   ref,
 } from '@vue/composition-api';
 
+import useColorClass from '@/useColorClass';
+
 const CommonButton = defineComponent({
   setup(props) {
     const hover = ref(false);
@@ -35,22 +37,24 @@ const CommonButton = defineComponent({
       if (props.size === 'lg') return 'h-12 h2 min-width-lg';
       return 'h-10 h3 min-width-md';
     });
+    const iconSize = computed(() => {
+      if (props.size === 'sm') return 'h-4 w-4 mr-1';
+      if (props.size === 'md') return 'h-5 w-5 mr-2';
+      if (props.size === 'lg') return 'h-6 w-6 mr-2';
+      return 'h-5 w-5 mr-2';
+    });
+
+    const { computedColor, computedColorIcon } = useColorClass();
 
     const color = computed(() => {
-      if (props.outline) {
-        if (props.color === 'primary') return 'text-primary-700 hover:border-primary-500 hover:text-primary-500 bg-cool-white hover:bg-white border border-solid border-primary-700';
-        if (props.color === 'secondary') return 'text-secondary-700 hover:border-secondary-500 hover:text-secondary-500 bg-cool-white hover:bg-white border border-solid border-secondary-700';
-        if (props.color === 'error' || props.color === 'red') return 'text-red-700 hover:border-red-500 hover:text-red-500 bg-cool-white hover:bg-white border border-solid border-red-700';
-      }
-      if (props.flat) {
-        if (props.color === 'primary') return 'text-primary-700 hover:border-primary-500 hover:text-primary-500 bg-cool-white hover:bg-white';
-        if (props.color === 'secondary') return 'text-secondary-700 hover:border-secondary-500 hover:text-secondary-500 bg-cool-white hover:bg-white';
-        if (props.color === 'error' || props.color === 'red') return 'text-red-700 hover:border-red-500 hover:text-red-500 bg-cool-white hover:bg-white';
-      }
-      if (props.color === 'primary') return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
-      if (props.color === 'secondary') return 'bg-secondary-700 hover:bg-secondary-500 text-cool-white';
-      if (props.color === 'error' || props.color === 'red') return 'bg-red-700 hover:bg-red-500 text-cool-white';
-      return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
+      if (props.outline) return computedColor(props.color, 'outline');
+      if (props.flat) return computedColor(props.color, 'flat');
+      return computedColor(props.color);
+    });
+    const iconColor = computed(() => {
+      if (props.outline) return computedColorIcon(props.color, 'outline');
+      if (props.flat) return computedColorIcon(props.color, 'flat');
+      return computedColorIcon(props.color);
     });
 
     const rounded = computed(() => (props.rounded ? 'rounded-lg' : ''));
@@ -62,19 +66,6 @@ const CommonButton = defineComponent({
     const disable = computed(() => (props.disabled ? 'pointer-events-none opacity-50' : ''));
 
     const classes = computed(() => `${size.value} ${color.value} ${rounded.value} ${text.value} ${block.value} ${disable.value}`);
-
-    const iconColor = computed(() => {
-      const tmpColor = props.color === 'error' ? 'red' : props.color;
-      if (props.outline || props.flat) return tmpColor;
-      return 'cool-white';
-    });
-
-    const iconSize = computed(() => {
-      if (props.size === 'sm') return 'h-4 w-4 mr-1';
-      if (props.size === 'md') return 'h-5 w-5 mr-2';
-      if (props.size === 'lg') return 'h-6 w-6 mr-2';
-      return 'h-5 w-5 mr-2';
-    });
 
     const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
 

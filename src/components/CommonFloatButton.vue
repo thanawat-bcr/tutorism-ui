@@ -23,6 +23,8 @@ import {
   ref,
 } from '@vue/composition-api';
 
+import useColorClass from '@/useColorClass';
+
 const CommonFloatButton = defineComponent({
   setup(props) {
     const hover = ref(false);
@@ -33,40 +35,29 @@ const CommonFloatButton = defineComponent({
       if (props.size === 'lg') return 'h-12 w-12';
       return 'h-10 w-10';
     });
-
-    const color = computed(() => {
-      if (props.outline) {
-        if (props.color === 'primary') return 'text-primary-700 hover:border-primary-500 hover:text-primary-500 bg-cool-white hover:bg-white border border-solid border-primary-700';
-        if (props.color === 'secondary') return 'text-secondary-700 hover:border-secondary-500 hover:text-secondary-500 bg-cool-white hover:bg-white border border-solid border-secondary-700';
-        if (props.color === 'error' || props.color === 'red') return 'text-red-700 hover:border-red-500 hover:text-red-500 bg-cool-white hover:bg-white border border-solid border-red-700';
-      }
-      if (props.flat) {
-        if (props.color === 'primary') return 'text-primary-700 hover:border-primary-500 hover:text-primary-500 bg-cool-white hover:bg-white';
-        if (props.color === 'secondary') return 'text-secondary-700 hover:border-secondary-500 hover:text-secondary-500 bg-cool-white hover:bg-white';
-        if (props.color === 'error' || props.color === 'red') return 'text-red-700 hover:border-red-500 hover:text-red-500 bg-cool-white hover:bg-white';
-      }
-      if (props.color === 'primary') return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
-      if (props.color === 'secondary') return 'bg-secondary-700 hover:bg-secondary-500 text-cool-white';
-      if (props.color === 'error' || props.color === 'red') return 'bg-red-700 hover:bg-red-500 text-cool-white';
-      return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
-    });
-
-    const disable = computed(() => (props.disabled ? 'pointer-events-none opacity-50' : ''));
-
-    const classes = computed(() => `${size.value} ${color.value} ${disable.value}`);
-
-    const iconColor = computed(() => {
-      const tmpColor = props.color === 'error' ? 'red' : props.color;
-      if (props.outline || props.flat) return tmpColor;
-      return 'cool-white';
-    });
-
     const iconSize = computed(() => {
       if (props.size === 'sm') return 'h-4 w-4';
       if (props.size === 'md') return 'h-5 w-5';
       if (props.size === 'lg') return 'h-6 w-6';
       return 'h-5 w-5';
     });
+
+    const { computedColor, computedColorIcon } = useColorClass();
+
+    const color = computed(() => {
+      if (props.outline) return computedColor(props.color, 'outline');
+      if (props.flat) return computedColor(props.color, 'flat');
+      return computedColor(props.color);
+    });
+    const iconColor = computed(() => {
+      if (props.outline) return computedColorIcon(props.color, 'outline');
+      if (props.flat) return computedColorIcon(props.color, 'flat');
+      return computedColorIcon(props.color);
+    });
+
+    const disable = computed(() => (props.disabled ? 'pointer-events-none opacity-50' : ''));
+
+    const classes = computed(() => `${size.value} ${color.value} ${disable.value}`);
 
     const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
 
