@@ -44,12 +44,12 @@ const CommonButton = defineComponent({
       return 'h-5 w-5 mr-2';
     });
 
-    const { computedColor, computedColorIcon } = useColorClass();
+    const { computedColorHover, computedColorIcon } = useColorClass();
 
     const color = computed(() => {
-      if (props.outline) return computedColor(props.color, 'outline');
-      if (props.flat) return computedColor(props.color, 'flat');
-      return computedColor(props.color);
+      if (props.outline) return computedColorHover(props.color, 'outline');
+      if (props.flat) return computedColorHover(props.color, 'flat');
+      return computedColorHover(props.color);
     });
     const iconColor = computed(() => {
       if (props.outline) return computedColorIcon(props.color, 'outline');

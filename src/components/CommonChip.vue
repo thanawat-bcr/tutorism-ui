@@ -20,12 +20,12 @@ import useColorClass from '@/useColorClass';
 
 const CommonChip = defineComponent({
   setup(props) {
-    const { computedColor, computedColorIcon } = useColorClass();
+    const { computedColorHover, computedColorIcon } = useColorClass();
 
     const color = computed(() => {
-      if (props.outline) return computedColor(props.color, 'outline');
-      if (props.flat) return computedColor(props.color, 'flat');
-      return computedColor(props.color);
+      if (props.outline) return computedColorHover(props.color, 'outline');
+      if (props.flat) return computedColorHover(props.color, 'flat');
+      return computedColorHover(props.color);
     });
 
     const spacing = computed(() => {

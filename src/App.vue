@@ -22,9 +22,21 @@
   //- CommonFloatButton.my-3(color="red" size="lg" outline icon="radio-button-checked")
   //- CommonIcon(icon="radio-button-checked" size='lg' color='rose')
   //- CommonIcon(icon="radio-button-checked" size='lg' color='primary')
-  CommonChip(color="red" outline) Helloo
-  CommonChip(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
-  CommonChip(color="primary" closable) Test Primary
+  //- CommonChip(color="red" outline) Helloo
+  //- CommonChip(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
+  //- CommonChip(color="primary" closable) Test Primary
+  //- .flex.flex-col.items-start
+    CommonCard(color="green" active hover @click="clickHandler").my-3
+      .flex.items-center
+        .w-16.h-16.mr-4
+          CommonIcon(icon="menu-bento" color="white" size="full")
+        h1 Hello World
+    CommonCard(color="secondary" active @click="clickHandler").my-3
+      h1 Hello World
+    CommonCard(color="red" hover @click="clickHandler").my-3
+      h1 Hello World
+    CommonCard(active @click="clickHandler").my-3
+      h1 Hello World
 </template>
 
 <script lang="ts">
