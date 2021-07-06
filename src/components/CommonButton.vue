@@ -1,19 +1,17 @@
 <template lang="pug">
-button.common-button.rounded-md.transition.duration-100.px-2(
+button.common-button.transition.duration-100.px-2(
   :type="type"
   :class="classes"
   :disabled="disabled"
-  :style="sizeStyle"
   @click="$emit('click')"
 )
-  .flex.items-center.justify-center
-    CommonIcon(
-      v-if="icon"
-      :src='icon'
-      :class="{ 'mr-1': (size === 'sm'), 'mr-2': (size !== 'sm') }"
-      :color="iconColor"
-      size="sm"
-    )
+  .common-button-content.flex.items-center.justify-center
+    span(:class="iconSize" v-if="icon")
+      CommonIcon(
+        :icon='icon'
+        :color="iconColor"
+        size="full"
+      )
     slot Submit
 </template>
 
@@ -25,67 +23,60 @@ import {
 
 const CommonButton = defineComponent({
   setup(props) {
-    const background = computed(() => {
-      if (props.color === 'red' || props.color === 'error') return 'bg-red-500 hover:bg-red-600 text-white';
-      if (props.color === 'green' || props.color === 'success') return 'bg-green-500 hover:bg-green-600 text-white';
-      if (props.color === 'orange' || props.color === 'warning') return 'bg-yellow-500 hover:bg-yellow-600 text-white';
-      if (props.color === 'yellow') return 'bg-yellow-400 hover:bg-yellow-500 text-white';
-      if (props.color === 'blue') return 'bg-blue-500 hover:bg-blue-500 text-white';
-      if (props.color === 'pink') return 'bg-pink-500 hover:bg-pink-500 text-white';
-      if (props.color === 'purple') return 'bg-purple-500 hover:bg-purple-500 text-white';
-      if (props.color === 'white') return 'bg-gray-100 hover:bg-gray-200 text-gray-800';
-      if (props.color === 'secondary') return 'bg-secondary-500 hover:bg-secondary-600 text-white';
-      return 'bg-primary-500 hover:bg-primary-600 text-white';
+    const size = computed(() => {
+      if (props.size === 'sm') return 'h-6 h4 min-width-sm';
+      if (props.size === 'md') return 'h-8 h4 min-width-md';
+      if (props.size === 'lg') return 'h-10 h3 min-width-lg';
+      return 'h-8 h4 min-width-md';
     });
 
-    const outline = computed(() => {
-      if (props.color === 'red' || props.color === 'error') return 'text-red-600 border-red-600 border-solid border bg-white hover:bg-red-50';
-      if (props.color === 'green' || props.color === 'success') return 'text-green-600 border-green-600 border-solid border bg-white hover:bg-green-50';
-      if (props.color === 'orange' || props.color === 'warning') return 'text-yellow-700 border-yellow-700 border-solid border bg-white hover:bg-yellow-50';
-      if (props.color === 'yellow') return 'text-yellow-400 border-yellow-400 border-solid border bg-white hover:bg-yellow-50';
-      if (props.color === 'blue') return 'text-blue-500 border-blue-500 border-solid border bg-white hover:bg-blue-50';
-      if (props.color === 'pink') return 'text-pink-500 border-pink-500 border-solid border bg-white hover:bg-pink-50';
-      if (props.color === 'purple') return 'text-purple-500 border-purple-500 border-solid border bg-white hover:bg-purple-50';
-      if (props.color === 'white' || props.color === 'gray' || props.color === 'grey') return 'text-gray-500 border-gray-500 border-solid border bg-white hover:bg-gray-50';
-      if (props.color === 'secondary') return 'text-secondary-600 border-secondary-600 border-solid border bg-white hover:bg-secondary-100';
-      return 'text-primary-600 border-primary-600 border-solid border bg-white hover:bg-primary-100';
+    const color = computed(() => {
+      if (props.outline) {
+        if (props.color === 'primary') return 'text-primary-700 hover:border-primary-500 hover:text-primary-500 bg-white border border-solid border-primary-700';
+        if (props.color === 'secondary') return 'text-secondary-700 hover:border-secondary-500 hover:text-secondary-500 bg-white border border-solid border-secondary-700';
+        if (props.color === 'error' || props.color === 'red') return 'text-red-700 hover:border-red-500 hover:text-red-500 bg-white border border-solid border-red-700';
+      }
+      if (props.flat) {
+        if (props.color === 'primary') return 'text-primary-700 hover:border-primary-500 hover:text-primary-500 bg-cool-white';
+        if (props.color === 'secondary') return 'text-secondary-700 hover:border-secondary-500 hover:text-secondary-500 bg-cool-white';
+        if (props.color === 'error' || props.color === 'red') return 'text-red-700 hover:border-red-500 hover:text-red-500 bg-cool-white';
+      }
+      if (props.color === 'primary') return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
+      if (props.color === 'secondary') return 'bg-secondary-700 hover:bg-secondary-500 text-cool-white';
+      if (props.color === 'error' || props.color === 'red') return 'bg-red-700 hover:bg-red-500 text-cool-white';
+      return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
     });
 
-    const color = computed(() => (props.outline ? outline.value : background.value));
-
-    const iconColor = computed(() => {
-      if (props.color === 'white') return 'gray';
-      if (props.outline) return props.color;
-      return 'white';
-    });
-
-    const shadow = computed(() => (props.shadow ? 'hover:shadow' : ''));
-
-    const disable = computed(() => (props.disabled ? 'pointer-events-none opacity-50' : ''));
-
-    const sizeClass = computed(() => {
-      if (props.size === 'sm') return 'text-sm';
-      if (props.size === 'md') return 'text-sm';
-      if (props.size === 'lg') return 'text-base';
-      return 'text-xl';
-    });
-    const sizeStyle = computed(() => {
-      if (props.size === 'sm') return 'min-width: 5rem; min-height: 2rem;';
-      if (props.size === 'md') return 'min-width: 6rem; min-height: 2rem;';
-      if (props.size === 'lg') return 'min-width: 8rem; min-height: 2.5rem;';
-      return 'min-width: 10rem; min-height: 2.5rem;';
-    });
+    const rounded = computed(() => (props.rounded ? 'rounded-lg' : ''));
 
     const text = computed(() => (props.upper ? 'uppercase' : ''));
 
     const block = computed(() => (props.block ? 'w-full' : ''));
 
-    const classes = computed(() => `${sizeClass.value} ${color.value} ${text.value} ${block.value} ${shadow.value} ${disable.value}`);
+    const disable = computed(() => (props.disabled ? 'pointer-events-none opacity-50' : ''));
+
+    const classes = computed(() => `${size.value} ${color.value} ${rounded.value} ${text.value} ${block.value} ${disable.value}`);
+
+    const iconColor = computed(() => {
+      if (props.outline || props.flat) return props.color;
+      return 'cool-white';
+    });
+
+    const iconSize = computed(() => {
+      if (props.size === 'sm') return 'h-2 w-2 mr-1';
+      if (props.size === 'md') return 'h-3 w-3 mr-2';
+      if (props.size === 'lg') return 'h-4 w-4 mr-2';
+      return 'h-3 w-3 mr-2';
+    });
+
+    const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
 
     return {
       classes,
-      sizeStyle,
+
+      iconSize,
       iconColor,
+      iconClasses,
     };
   },
   props: {
@@ -98,24 +89,28 @@ const CommonButton = defineComponent({
       type: String,
       default: 'primary',
     },
+    outline: {
+      type: Boolean,
+      default: false,
+    },
+    flat: {
+      type: Boolean,
+      default: false,
+    },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: String,
       default: 'md',
-      validation: (val: string) => ['sm', 'md', 'lg', 'xl'].indexOf(val) !== -1,
+      validation: (val: string) => ['sm', 'md', 'lg'].indexOf(val) !== -1,
     },
     upper: {
       type: Boolean,
       default: false,
     },
     block: {
-      type: Boolean,
-      default: false,
-    },
-    outline: {
-      type: Boolean,
-      default: false,
-    },
-    shadow: {
       type: Boolean,
       default: false,
     },
@@ -133,4 +128,15 @@ export default CommonButton;
 </script>
 
 <style lang="scss">
+.common-button {
+  &.min-width-sm {
+    min-width: 4rem;
+  }
+  &.min-width-md {
+    min-width: 6rem;
+  }
+  &.min-width-lg {
+    min-width: 8rem;
+  }
+}
 </style>

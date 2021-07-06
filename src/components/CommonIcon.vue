@@ -17,7 +17,7 @@ const CommonIcon = defineComponent({
       if (props.size === 'sm') return 'w-4 h-4';
       if (props.size === 'md') return 'w-6 h-6';
       if (props.size === 'lg') return 'w-8 h-8';
-      return 'w-12 h-12';
+      return 'w-full h-full';
     });
 
     const { colorToHex } = useTailwindColor();
@@ -26,6 +26,7 @@ const CommonIcon = defineComponent({
       if (props.color === '') return '#000';
       if (props.color === 'black') return '#000';
       if (props.color === 'white') return '#fff';
+      if (props.color === 'cool-white') return '#eee';
       return colorToHex(props.color as string);
     });
 
@@ -33,17 +34,20 @@ const CommonIcon = defineComponent({
 
     const classes = computed(() => `${sizeClass.value}`);
 
+    const src = computed(() => `/icons/${props.icon}.svg`);
+
     return {
       classes,
       filter,
+      src,
       computedColor,
       colorToHex,
     };
   },
   props: {
-    src: {
+    icon: {
       type: String,
-      default: '',
+      required: true,
     },
     alt: {
       default: '',
@@ -51,11 +55,11 @@ const CommonIcon = defineComponent({
     size: {
       type: String,
       default: 'md',
-      validation: (val: string) => ['sm', 'md', 'lg', 'xl'].indexOf(val) !== -1,
+      validation: (val: string) => ['sm', 'md', 'lg', 'full'].indexOf(val) !== -1,
     },
     color: {
       type: String,
-      default: '',
+      default: 'primary',
     },
   },
 });
