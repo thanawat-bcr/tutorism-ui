@@ -2,7 +2,6 @@
 .common-icon(
   :class="classes"
   :style="filter"
-  style="transition: filter 1s ease-in-out;"
   @click="$emit('click')"
 )
   CommonImage(
@@ -32,7 +31,7 @@ const CommonIcon = defineComponent({
       if (props.color === 'black') return '#000';
       if (props.color === 'white') return '#fff';
       if (props.color === 'cool-white') return '#eee';
-      return colorToHex(props.color as string, props.buttonHover as boolean);
+      return colorToHex(props.color as string, props.hover as boolean);
     });
 
     const filter = computed(() => `filter: ${useColorFilter(computedColor.value as string).value}`);
@@ -66,7 +65,7 @@ const CommonIcon = defineComponent({
       type: String,
       default: 'primary',
     },
-    buttonHover: {
+    hover: {
       type: Boolean,
     },
   },

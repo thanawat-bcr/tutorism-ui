@@ -11,7 +11,7 @@ button.common-float-button.rounded-full.transition.duration-100(
       CommonIcon(
         :icon='icon'
         :color="iconColor"
-        :buttonHover="hover"
+        :hover="hover"
         size="full"
       )
 </template>
@@ -56,7 +56,8 @@ const CommonFloatButton = defineComponent({
     const classes = computed(() => `${size.value} ${color.value} ${disable.value}`);
 
     const iconColor = computed(() => {
-      if (props.outline || props.flat) return props.color;
+      const tmpColor = props.color === 'error' ? 'red' : props.color;
+      if (props.outline || props.flat) return tmpColor;
       return 'cool-white';
     });
 

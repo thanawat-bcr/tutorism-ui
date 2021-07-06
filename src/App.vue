@@ -6,20 +6,20 @@
   //- h4 Hello
   //- h5 Hello
   //- p paragraph
-  //- .flex.flex-col.items-start
-    CommonButton.my-3(size="sm" block color="primary" icon="checkbox-checked") Hello
-    CommonButton.my-3(size="md" block color="red" rounded icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" block color="secondary" icon="checkbox-checked") Hello
-    CommonButton.my-3(size="sm" block color="primary" outline icon="checkbox-checked") Hello
-    CommonButton.my-3(size="md" block color="red" outline rounded icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" block color="secondary" outline icon="checkbox-checked") Hello
-    CommonButton.my-3(size="sm" block color="primary" flat icon="checkbox-checked") Hello
-    CommonButton.my-3(size="md" block color="red" flat icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" block color="secondary" flat icon="checkbox-checked") Hello
-    CommonButton.my-3(size="lg" block color="secondary" flat icon="checkbox-checked") Hello
-  CommonFloatButton.my-3(color="error" size="sm" icon="checkbox-checked")
-  CommonFloatButton.my-3(color="error" size="md" icon="checkbox-checked")
-  CommonFloatButton.my-3(color="error" size="lg" icon="checkbox-checked")
+  .flex.flex-col.items-start
+    CommonButton.my-3(size="sm" color="primary" icon="checkbox-checked") Hello
+    CommonButton.my-3(size="md" color="red" rounded icon="checkbox-checked") Hello
+    CommonButton.my-3(size="lg" color="secondary" icon="checkbox-checked") Hello
+    CommonButton.my-3(size="sm" color="primary" outline icon="checkbox-checked") Hello
+    CommonButton.my-3(size="md" color="red" outline rounded icon="checkbox-checked") Hello
+    CommonButton.my-3(size="lg" color="secondary" outline icon="checkbox-checked") Hello
+    CommonButton.my-3(size="sm" color="primary" flat icon="checkbox-checked") Hello
+    CommonButton.my-3(size="md" color="red" flat icon="checkbox-checked") Hello
+    CommonButton.my-3(size="lg" color="secondary" flat icon="checkbox-checked") Hello
+    CommonButton.my-3(size="lg" color="secondary" flat icon="checkbox-checked") Hello
+  CommonFloatButton.my-3(color="error" size="sm" outline icon="checkbox-checked")
+  CommonFloatButton.my-3(color="error" size="md" outline icon="checkbox-checked")
+  CommonFloatButton.my-3(color="error" size="lg" outline icon="checkbox-checked")
   CommonIcon(icon="radio-button-checked" size='lg' color='rose')
   CommonIcon(icon="radio-button-checked" size='lg' color='primary')
 </template>

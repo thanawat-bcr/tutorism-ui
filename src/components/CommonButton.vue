@@ -4,12 +4,15 @@ button.common-button.transition.duration-100.px-2(
   :class="classes"
   :disabled="disabled"
   @click="$emit('click')"
+  @mouseover="hover = true"
+  @mouseleave="hover = false"
 )
   .common-button-content.flex.items-center.justify-center
     span(:class="iconSize" v-if="icon")
       CommonIcon(
         :icon='icon'
         :color="iconColor"
+        :hover="hover"
         size="full"
       )
     slot Submit
@@ -19,10 +22,13 @@ button.common-button.transition.duration-100.px-2(
 import {
   computed,
   defineComponent,
+  ref,
 } from '@vue/composition-api';
 
 const CommonButton = defineComponent({
   setup(props) {
+    const hover = ref(false);
+
     const size = computed(() => {
       if (props.size === 'sm') return 'h-6 h4 min-width-sm';
       if (props.size === 'md') return 'h-8 h4 min-width-md';
@@ -58,7 +64,8 @@ const CommonButton = defineComponent({
     const classes = computed(() => `${size.value} ${color.value} ${rounded.value} ${text.value} ${block.value} ${disable.value}`);
 
     const iconColor = computed(() => {
-      if (props.outline || props.flat) return props.color;
+      const tmpColor = props.color === 'error' ? 'red' : props.color;
+      if (props.outline || props.flat) return tmpColor;
       return 'cool-white';
     });
 
@@ -72,6 +79,8 @@ const CommonButton = defineComponent({
     const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
 
     return {
+      hover,
+
       classes,
 
       iconSize,
