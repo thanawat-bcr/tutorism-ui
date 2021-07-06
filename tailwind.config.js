@@ -26,6 +26,7 @@ module.exports = {
           800: 'var(--color-secondary-800)',
           900: 'var(--color-secondary-900)',
         },
+        'cool-white': '#EEEEEE',
       },
     },
   },

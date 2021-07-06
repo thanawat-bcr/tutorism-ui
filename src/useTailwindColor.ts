@@ -288,6 +288,7 @@ export default function () {
       800: '--color-secondary-800',
       900: '--color-secondary-900',
     },
+    'cool-white': '#EEEEEE',
   };
 
   const colorList = Object.keys(colors);
