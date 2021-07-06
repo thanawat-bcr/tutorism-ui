@@ -293,12 +293,15 @@ export default function () {
 
   const colorList = Object.keys(colors);
 
-  const colorToHex = (color: string) => {
+  const colorToHex = (color: string, hover:boolean) => {
     if (color === 'primary' || color === 'secondary') {
-      const hex = getComputedStyle(document.documentElement).getPropertyValue(`--color-${color}-500`);
-      return hex.trim();
+      if (hover) {
+        return (getComputedStyle(document.documentElement).getPropertyValue(`--color-${color}-500`).trim());
+      }
+      return (getComputedStyle(document.documentElement).getPropertyValue(`--color-${color}-700`).trim());
     }
-    return colors[color]['500'].trim();
+    if (hover) return colors[color]['500'].trim();
+    return colors[color]['700'].trim();
   };
 
   return {

@@ -1,5 +1,10 @@
 <template lang="pug">
-.common-icon(:class="classes" @click="$emit('click')" :style="filter")
+.common-icon(
+  :class="classes"
+  :style="filter"
+  style="transition: filter 1s ease-in-out;"
+  @click="$emit('click')"
+)
   CommonImage(
     :src="src"
     :alt="alt"
@@ -7,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api';
+import { computed, defineComponent, ref } from '@vue/composition-api';
 import useColorFilter from '@/useColorFilter';
 import useTailwindColor from '@/useTailwindColor';
 
@@ -27,7 +32,7 @@ const CommonIcon = defineComponent({
       if (props.color === 'black') return '#000';
       if (props.color === 'white') return '#fff';
       if (props.color === 'cool-white') return '#eee';
-      return colorToHex(props.color as string);
+      return colorToHex(props.color as string, props.buttonHover as boolean);
     });
 
     const filter = computed(() => `filter: ${useColorFilter(computedColor.value as string).value}`);
@@ -60,6 +65,9 @@ const CommonIcon = defineComponent({
     color: {
       type: String,
       default: 'primary',
+    },
+    buttonHover: {
+      type: Boolean,
     },
   },
 });
