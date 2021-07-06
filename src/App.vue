@@ -17,8 +17,11 @@
     CommonButton.my-3(size="md" block color="red" flat icon="checkbox-checked") Hello
     CommonButton.my-3(size="lg" block color="secondary" flat icon="checkbox-checked") Hello
     CommonButton.my-3(size="lg" block color="secondary" flat icon="checkbox-checked") Hello
-  CommonIcon(icon="close" size='md' color='rose')
-  CommonIcon(icon="close" size='sm' color='primary')
+  CommonFloatButton.my-3(color="error" size="sm" icon="checkbox-checked")
+  CommonFloatButton.my-3(color="error" size="md" icon="checkbox-checked")
+  CommonFloatButton.my-3(color="error" size="lg" icon="checkbox-checked")
+  CommonIcon(icon="radio-button-checked" size='lg' color='rose')
+  CommonIcon(icon="radio-button-checked" size='lg' color='primary')
 </template>
 
 <script lang="ts">

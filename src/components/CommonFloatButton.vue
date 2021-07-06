@@ -1,33 +1,37 @@
 <template lang="pug">
-button.common-button.transition.duration-100.px-2(
-  :type="type"
+button.common-float-button.rounded-full.transition.duration-100(
   :class="classes"
   :disabled="disabled"
   @click="$emit('click')"
+  @mouseover="hover = true"
+  @mouseleave="hover = false"
 )
-  .common-button-content.flex.items-center.justify-center
+  .common-float-button-content.flex.items-center.justify-center
     span(:class="iconSize" v-if="icon")
       CommonIcon(
         :icon='icon'
         :color="iconColor"
+        :buttonHover="hover"
         size="full"
       )
-    slot Submit
 </template>
 
 <script lang="ts">
 import {
   computed,
   defineComponent,
+  ref,
 } from '@vue/composition-api';
 
-const CommonButton = defineComponent({
+const CommonFloatButton = defineComponent({
   setup(props) {
+    const hover = ref(false);
+
     const size = computed(() => {
-      if (props.size === 'sm') return 'h-6 h4 min-width-sm';
-      if (props.size === 'md') return 'h-8 h4 min-width-md';
-      if (props.size === 'lg') return 'h-10 h3 min-width-lg';
-      return 'h-8 h4 min-width-md';
+      if (props.size === 'sm') return 'h-6 w-6';
+      if (props.size === 'md') return 'h-8 w-8';
+      if (props.size === 'lg') return 'h-10 w-10';
+      return 'h-8 w-8';
     });
 
     const color = computed(() => {
@@ -47,15 +51,9 @@ const CommonButton = defineComponent({
       return 'bg-primary-700 hover:bg-primary-500 text-cool-white';
     });
 
-    const rounded = computed(() => (props.rounded ? 'rounded-lg' : ''));
-
-    const text = computed(() => (props.upper ? 'uppercase' : ''));
-
-    const block = computed(() => (props.block ? 'w-full' : ''));
-
     const disable = computed(() => (props.disabled ? 'pointer-events-none opacity-50' : ''));
 
-    const classes = computed(() => `${size.value} ${color.value} ${rounded.value} ${text.value} ${block.value} ${disable.value}`);
+    const classes = computed(() => `${size.value} ${color.value} ${disable.value}`);
 
     const iconColor = computed(() => {
       if (props.outline || props.flat) return props.color;
@@ -63,15 +61,17 @@ const CommonButton = defineComponent({
     });
 
     const iconSize = computed(() => {
-      if (props.size === 'sm') return 'h-2 w-2 mr-1';
-      if (props.size === 'md') return 'h-3 w-3 mr-2';
-      if (props.size === 'lg') return 'h-4 w-4 mr-2';
-      return 'h-3 w-3 mr-2';
+      if (props.size === 'sm') return 'h-2 w-2';
+      if (props.size === 'md') return 'h-3 w-3';
+      if (props.size === 'lg') return 'h-4 w-4';
+      return 'h-3 w-3';
     });
 
     const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
 
     return {
+      hover,
+
       classes,
 
       iconSize,
@@ -80,11 +80,6 @@ const CommonButton = defineComponent({
     };
   },
   props: {
-    type: {
-      type: String,
-      default: 'button',
-      validation: (val: string) => ['button', 'submit'].indexOf(val) !== -1,
-    },
     color: {
       type: String,
       default: 'primary',
@@ -97,22 +92,10 @@ const CommonButton = defineComponent({
       type: Boolean,
       default: false,
     },
-    rounded: {
-      type: Boolean,
-      default: false,
-    },
     size: {
       type: String,
       default: 'md',
       validation: (val: string) => ['sm', 'md', 'lg'].indexOf(val) !== -1,
-    },
-    upper: {
-      type: Boolean,
-      default: false,
-    },
-    block: {
-      type: Boolean,
-      default: false,
     },
     disabled: {
       type: Boolean,
@@ -120,15 +103,16 @@ const CommonButton = defineComponent({
     },
     icon: {
       type: String,
+      required: true,
     },
   },
 });
 
-export default CommonButton;
+export default CommonFloatButton;
 </script>
 
 <style lang="scss">
-.common-button {
+.common-float-button {
   &.min-width-sm {
     min-width: 4rem;
   }
