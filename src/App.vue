@@ -6,37 +6,54 @@
   //- h4 Hello
   //- h5 Hello
   //- p paragraph
-  //- .flex.flex-col.items-start
-    CommonButton.my-3(size="sm" color="primary") Hello
-    CommonButton.my-3(size="md" color="red" rounded) Hello
-    CommonButton.my-3(size="lg" color="secondary") Hello
-    CommonButton.my-3(size="sm" color="primary" outline) Hello
-    CommonButton.my-3(size="md" color="red" outline rounded) Hello
-    CommonButton.my-3(size="lg" color="secondary" outline) Hello
-    CommonButton.my-3(size="sm" color="primary" flat) Hello
-    CommonButton.my-3(size="md" color="red" flat) Hello
-    CommonButton.my-3(size="lg" color="secondary" flat) Hello
-    CommonButton.my-3(size="lg" color="secondary" flat) Hello
-  //- CommonFloatButton.my-3(color="red" size="sm" icon="radio-button-checked")
-  //- CommonFloatButton.my-3(color="red" size="md" flat icon="radio-button-checked")
-  //- CommonFloatButton.my-3(color="red" size="lg" outline icon="radio-button-checked")
-  //- CommonIcon(icon="radio-button-checked" size='lg' color='rose')
-  //- CommonIcon(icon="radio-button-checked" size='lg' color='primary')
-  //- CommonChip(color="red" outline) Helloo
-  //- CommonChip(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
-  //- CommonChip(color="primary" closable) Test Primary
-  //- .flex.flex-col.items-start
-    CommonCard(color="green" active hover @click="clickHandler").my-3
-      .flex.items-center
-        .w-16.h-16.mr-4
-          CommonIcon(icon="menu-bento" color="white" size="full")
+  .flex.flex-col.items-start
+    .flex.my-3
+      CommonButton.mx-3(size="sm" color="primary") Hello
+      CommonButton.mx-3(size="md" color="red" rounded) Hello
+      CommonButton.mx-3(size="lg" color="secondary") Hello
+      CommonButton.mx-3(size="lg" color="secondary" icon="checkbox") Hello
+    .flex.my-3
+      CommonButton.mx-3(size="sm" color="primary" outline) Hello
+      CommonButton.mx-3(size="md" color="red" outline rounded) Hello
+      CommonButton.mx-3(size="lg" color="secondary" outline) Hello
+      CommonButton.mx-3(size="lg" color="secondary" outline icon="checkbox") Hello
+    .flex.my-3
+      CommonButton.mx-3(size="sm" color="primary" flat) Hello
+      CommonButton.mx-3(size="md" color="red" flat) Hello
+      CommonButton.mx-3(size="lg" color="secondary" flat) Hello
+      CommonButton.mx-3(size="lg" color="secondary" flat icon="checkbox") Hello
+    .flex.my-3
+      CommonFloatButton.mx-3(color="red" size="lg" icon="radio-button-checked")
+      CommonFloatButton.mx-3(color="red" size="lg" flat icon="radio-button-checked")
+      CommonFloatButton.mx-3(color="red" size="lg" outline icon="radio-button-checked")
+    .flex.my-3
+      CommonIcon.mx-3(icon="radio-button-checked" size='lg' color='rose')
+      CommonIcon.mx-3(icon="radio-button-checked" size='lg' color='primary')
+    .flex.my-3
+      CommonChip.mx-3(color="red" outline) Helloo
+      CommonChip.mx-3(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
+      CommonChip.mx-3(color="primary" closable) Test Primary
+    .flex.my-3
+      CommonCard(color="green" active hover @click="clickHandler").mx-3
+        .flex.items-center
+          h1 Hello World
+          .w-16.h-16.ml-4
+            CommonIcon(icon="calendar" color="white" size="full")
+      CommonCard(color="secondary" active @click="clickHandler").mx-3
         h1 Hello World
-    CommonCard(color="secondary" active @click="clickHandler").my-3
-      h1 Hello World
-    CommonCard(color="red" hover @click="clickHandler").my-3
-      h1 Hello World
-    CommonCard(active @click="clickHandler").my-3
-      h1 Hello World
+      CommonCard(color="red" hover @click="clickHandler").mx-3
+        h1 Hello World
+      CommonCard(active @click="clickHandler").mx-3
+        h1 Hello World
+    .flex.my-3
+      CommonPanel.mx-3(icon="menu-bento" @click="clickHandler") 200
+        template(#subtitle) Information
+      CommonPanel.mx-3(icon="menu-bento" hover @click="clickHandler") 200
+        template(#subtitle) Information
+      CommonPanel.mx-3(color="red" active hover @click="clickHandler") 300
+        template(#subtitle) Information
+      CommonPanel.mx-3(icon="menu-bento" active hover @click="clickHandler") 500
+        template(#subtitle) Information
 </template>
 
 <script lang="ts">
