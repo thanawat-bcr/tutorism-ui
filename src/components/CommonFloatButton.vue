@@ -10,8 +10,8 @@ button.common-float-button.rounded-full.transition.duration-100(
     span(:class="iconSize" v-if="icon")
       CommonIcon(
         :icon='icon'
-        :color="iconColor"
         :hover="hover"
+        :color="iconColor"
         size="full"
       )
 </template>

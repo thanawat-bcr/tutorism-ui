@@ -10,12 +10,10 @@ import useColorClass from '@/useColorClass';
 
 const CommonCard = defineComponent({
   setup(props) {
-    const { computedColor, computedColorHover } = useColorClass();
+    const { computedColor } = useColorClass();
 
     const color = computed(() => {
-      if (props.active && props.hover) return computedColorHover(props.color);
       if (props.active) return computedColor(props.color);
-      if (props.hover) return computedColorHover(props.color, 'flat');
       return computedColor(props.color, 'flat');
     });
 
@@ -49,10 +47,6 @@ const CommonCard = defineComponent({
       default: true,
     },
     block: {
-      type: Boolean,
-      default: false,
-    },
-    hover: {
       type: Boolean,
       default: false,
     },

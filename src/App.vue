@@ -34,14 +34,14 @@
       CommonChip.mx-3(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
       CommonChip.mx-3(color="primary" closable) Test Primary
     .flex.my-3
-      CommonCard(color="green" active hover @click="clickHandler").mx-3
+      CommonCard(color="green" active @click="clickHandler").mx-3
         .flex.items-center
           h1 Hello World
           .w-16.h-16.ml-4
             CommonIcon(icon="calendar" color="white" size="full")
       CommonCard(color="secondary" active @click="clickHandler").mx-3
         h1 Hello World
-      CommonCard(color="red" hover icon="time" @click="clickHandler").mx-3
+      CommonCard(color="red" icon="time" @click="clickHandler").mx-3
         .flex.items-center
           .w-16.h-16.mr-4
             CommonIcon(icon="time" color="red" size="full")
@@ -52,11 +52,11 @@
     .flex.my-3
       CommonPanel.mx-3(icon="menu-bento" @click="clickHandler") 200
         template(#subtitle) Information
-      CommonPanel.mx-3(icon="menu-bento" hover @click="clickHandler") 200
+      CommonPanel.mx-3(icon="menu-bento" color="red" @click="clickHandler") 200
         template(#subtitle) Information
-      CommonPanel.mx-3(color="red" active hover @click="clickHandler") 300
+      CommonPanel.mx-3(color="red" active @click="clickHandler") 300
         template(#subtitle) Information
-      CommonPanel.mx-3(icon="menu-bento" active hover @click="clickHandler" :rounded="false" :shadow="false") 500
+      CommonPanel.mx-3(icon="menu-bento" active @click="clickHandler") 500
         template(#subtitle) Information
 </template>
 

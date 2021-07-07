@@ -5,7 +5,6 @@ CommonCard.common-panel(
   :shadow="shadow"
   :rounded="rounded"
   :block="block"
-  :hover="hover"
   @click="$emit('click')"
 )
   .flex
@@ -61,10 +60,6 @@ const CommonPanel = defineComponent({
       default: true,
     },
     block: {
-      type: Boolean,
-      default: false,
-    },
-    hover: {
       type: Boolean,
       default: false,
     },
