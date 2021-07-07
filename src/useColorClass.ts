@@ -9,6 +9,16 @@ export default function () {
         return `bg-${color}-700 text-cool-white`;
     }
   };
+  const computedCardColor = (color: string, mode = '') => {
+    switch (mode) {
+      case 'flat':
+        return `text-${color}-700 bg-white`;
+      case 'outline':
+        return `text-${color}-700 bg-white border border-solid border-${color}-700`;
+      default:
+        return `bg-${color}-700 text-cool-white`;
+    }
+  };
   const computedColorHover = (color: string, mode = '') => {
     switch (mode) {
       case 'flat':
@@ -34,5 +44,6 @@ export default function () {
     computedColor,
     computedColorHover,
     computedColorIcon,
+    computedCardColor,
   };
 }

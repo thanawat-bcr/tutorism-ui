@@ -8,6 +8,7 @@ import CommonIcon from '@/components/CommonIcon.vue';
 import CommonChip from '@/components/CommonChip.vue';
 import CommonCard from '@/components/CommonCard.vue';
 import CommonPanel from '@/components/CommonPanel.vue';
+import CommonModal from '@/components/CommonModal.vue';
 
 import App from './App.vue';
 import router from './router';
@@ -21,6 +22,7 @@ Vue.component('CommonIcon', CommonIcon);
 Vue.component('CommonChip', CommonChip);
 Vue.component('CommonCard', CommonCard);
 Vue.component('CommonPanel', CommonPanel);
+Vue.component('CommonModal', CommonModal);
 
 Vue.config.productionTip = false;
 

@@ -58,19 +58,32 @@
         template(#subtitle) Information
       CommonPanel.mx-3(icon="menu-bento" active @click="clickHandler") 500
         template(#subtitle) Information
+    .flex.my-3
+      CommonButton(@click="$refs.modal.open({ id: 1, title: 'Test'})") Open Modal
+  CommonModal(ref="modal" closable @confirm="confirmHandler") Some Text on Modal
+    template(#confirm) Confirm purchase
+    template(#close) Cancel
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api';
 
 const App = defineComponent({
   setup() {
     const clickHandler = () => { console.log('Clicked'); };
     const closeHandler = () => { console.log('Closed'); };
 
+    const modal = ref('');
+    const confirmHandler = (ctx: any) => {
+      (modal.value as any).close();
+    };
+
     return {
       clickHandler,
       closeHandler,
+
+      modal,
+      confirmHandler,
     };
   },
 });

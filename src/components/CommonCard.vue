@@ -10,11 +10,11 @@ import useColorClass from '@/useColorClass';
 
 const CommonCard = defineComponent({
   setup(props) {
-    const { computedColor } = useColorClass();
+    const { computedCardColor } = useColorClass();
 
     const color = computed(() => {
-      if (props.active) return computedColor(props.color);
-      return computedColor(props.color, 'flat');
+      if (props.active) return computedCardColor(props.color);
+      return computedCardColor(props.color, 'flat');
     });
 
     const block = computed(() => (props.block ? 'w-full' : ''));
