@@ -8,14 +8,16 @@
     )
       CommonCard.flex.flex-col.items-center.z-30.relative(
         v-if="active"
+        :color="color"
+        flat
         style="max-width: 25rem;"
       )
         #close(v-if="closable"): CommonIcon.absolute.top-0.right-0.m-2.cursor-pointer(icon="close" size="md" color="black" @click="close")
         #context.h1.text-center.mb-2.break-words.w-full(style="min-height: 4rem;"): slot Text
         #actions.flex.w-full(style="width: 22rem;")
-          CommonButton.flex-1.mx-1(v-if="$slots.close" @click="close" flat): slot(name="close") Close
-          CommonButton.flex-1.mx-1(v-if="$slots.cancel" @click="cancelAction" flat): slot(name="cancel") Cancel
-          CommonButton.flex-1.mx-1(v-if="$slots.confirm" @click="confirmAction"): slot(name="confirm") Confirm
+          CommonButton.flex-1.mx-1(:color="color" v-if="$slots.close" @click="close" flat): slot(name="close") Close
+          CommonButton.flex-1.mx-1(:color="color" v-if="$slots.cancel" @click="cancelAction" flat): slot(name="cancel") Cancel
+          CommonButton.flex-1.mx-1(:color="color" v-if="$slots.confirm" @click="confirmAction"): slot(name="confirm") Confirm
 </template>
 
 <script lang="ts">
@@ -55,6 +57,10 @@ const CommonModal = defineComponent({
     closable: {
       type: Boolean,
       default: false,
+    },
+    color: {
+      type: String,
+      default: 'primary',
     },
   },
 });

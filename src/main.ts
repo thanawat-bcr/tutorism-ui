@@ -9,6 +9,7 @@ import CommonChip from '@/components/CommonChip.vue';
 import CommonCard from '@/components/CommonCard.vue';
 import CommonPanel from '@/components/CommonPanel.vue';
 import CommonModal from '@/components/CommonModal.vue';
+import CommonModalPreset from '@/components/CommonModalPreset.vue';
 
 import App from './App.vue';
 import router from './router';
@@ -23,6 +24,7 @@ Vue.component('CommonChip', CommonChip);
 Vue.component('CommonCard', CommonCard);
 Vue.component('CommonPanel', CommonPanel);
 Vue.component('CommonModal', CommonModal);
+Vue.component('CommonModalPreset', CommonModalPreset);
 
 Vue.config.productionTip = false;
 

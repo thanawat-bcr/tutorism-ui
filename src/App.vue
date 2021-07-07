@@ -59,10 +59,18 @@
       CommonPanel.mx-3(icon="menu-bento" active @click="clickHandler") 500
         template(#subtitle) Information
     .flex.my-3
-      CommonButton(@click="$refs.modal.open({ id: 1, title: 'Test'})") Open Modal
-  CommonModal(ref="modal" closable @confirm="confirmHandler") Some Text on Modal
-    template(#confirm) Confirm purchase
-    template(#close) Cancel
+      CommonButton.mx-3(color="primary" @click="$refs.modal.open({ id: 1, title: 'Test'})") Open Modal
+      CommonButton.mx-3(color="primary" @click="$refs.confirmActionModal.open()") Open Confirm Action
+      CommonButton.mx-3(color="secondary" @click="$refs.successModal.open()") Open Success
+      CommonButton.mx-3(color="red" @click="$refs.errorModal.open()") Open Error
+      CommonButton.mx-3(color="red" @click="$refs.confirmDeleteModal.open()") Open Confirm Delete
+      CommonModal(ref="modal" closable @confirm="confirmHandler" color="green") Some Text on Modal
+        template(#confirm) Confirm purchase
+        template(#close) Cancel
+      CommonModalPreset(ref="confirmActionModal" type="confirm-action")
+      CommonModalPreset(ref="successModal" type="success")
+      CommonModalPreset(ref="errorModal" type="error")
+      CommonModalPreset(ref="confirmDeleteModal" type="confirm-delete")
 </template>
 
 <script lang="ts">
@@ -78,11 +86,20 @@ const App = defineComponent({
       (modal.value as any).close();
     };
 
+    const errorModal = ref('');
+    const confirmActionModal = ref('');
+    const successModal = ref('');
+    const confirmDeleteModal = ref('');
+
     return {
       clickHandler,
       closeHandler,
 
       modal,
+      confirmActionModal,
+      successModal,
+      errorModal,
+      confirmDeleteModal,
       confirmHandler,
     };
   },
