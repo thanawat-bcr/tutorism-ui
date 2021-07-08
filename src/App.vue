@@ -1,12 +1,6 @@
 <template lang="pug">
 .app.p-8
-  //- h1 Hello
-  //- h2 Hello
-  //- h3 Hello
-  //- h4 Hello
-  //- h5 Hello
-  //- p paragraph
-  //- .flex.flex-col
+  .flex.flex-col
     .flex.my-3
       CommonButton.mx-3(color="red") Click Me
       CommonButton.mx-3(color="green") Click Me
@@ -49,7 +43,7 @@
       CommonButton.mx-3(icon="show" outline color="pink") Click Me
       CommonButton.mx-3(icon="show" outline color="secondary") Click Me
       CommonButton.mx-3(icon="show" outline) Click Me
-  //- .flex.flex-col
+  .flex.flex-col
     .flex.my-3
       CommonFloatButton.mx-3(icon="hide" color="red")
       CommonFloatButton.mx-3(icon="hide" color="green")
@@ -69,7 +63,7 @@
       CommonFloatButton.mx-3(outline icon="category" color="pink")
       CommonFloatButton.mx-3(outline icon="category" color="secondary")
       CommonFloatButton.mx-3(outline icon="category")
-  //- .flex.flex-col
+  .flex.flex-col
     .flex.my-3
       CommonChip.mx-1 Helloo
       CommonChip.mx-1(flat) Helloo
@@ -83,14 +77,14 @@
       CommonChip.mx-1(color="pink" closable) Helloo
       CommonChip.mx-1(color="secondary" closable flat) Helloo
       CommonChip.mx-1(color="primary" closable outline) Helloo
-  //- .flex.flex-col
+  .flex.flex-col
     .flex.my-3
       CommonCard(@click="clickHandler").mx-3
         .flex.items-center
           h5 Hello World
           .w-16.h-16.ml-4
             CommonIcon(icon="calendar" size="full")
-  //- .flex.flex-col
+  .flex.flex-col
     .flex.my-3
       CommonPanel.mx-3(icon="menu-bento" @click="clickHandler" text="center") 200
         template(#subtitle) Information
