@@ -1,10 +1,10 @@
 <template lang="pug">
-div.common-chip.transition.duration-100.h-6.inline-flex.items-center.justify-center.rounded-xl.h4.relative(
+div.common-chip.transition.duration-100.inline-flex.items-center.justify-center.rounded-2xl.body2.relative(
   :class="classes"
   @click.self="$emit('click')"
 )
   slot Text
-  span.w-3.h-3.cursor-pointer.absolute.right-0.mr-1(v-if="closable")
+  span.cursor-pointer.absolute.right-0.mr-2(v-if="closable" style="width: 18px; height: 18px;")
     CommonIcon(
       icon='close'
       :color="iconColor"
@@ -20,17 +20,22 @@ import useColorClass from '@/useColorClass';
 
 const CommonChip = defineComponent({
   setup(props) {
-    const { computedColorHover, computedColorIcon } = useColorClass();
+    const size = computed(() => {
+      if (props.small) return 'h-6';
+      return 'h-8';
+    });
+
+    const { computedColorWithHover, computedColorIcon } = useColorClass();
 
     const color = computed(() => {
-      if (props.outline) return computedColorHover(props.color, 'outline');
-      if (props.flat) return computedColorHover(props.color, 'flat');
-      return computedColorHover(props.color);
+      if (props.outline) return computedColorWithHover(props.color, 'outline');
+      if (props.flat) return computedColorWithHover(props.color, 'flat');
+      return computedColorWithHover(props.color);
     });
 
     const spacing = computed(() => {
-      if (props.closable) return 'pr-5 pl-3';
-      return 'px-3';
+      if (props.closable) return 'closable-spacing';
+      return 'px-4';
     });
 
     const iconColor = computed(() => {
@@ -39,7 +44,7 @@ const CommonChip = defineComponent({
       return computedColorIcon(props.color);
     });
 
-    const classes = computed(() => `${color.value} ${spacing.value}`);
+    const classes = computed(() => `${size.value} ${color.value} ${spacing.value}`);
 
     return {
       classes,
@@ -63,6 +68,10 @@ const CommonChip = defineComponent({
       type: Boolean,
       default: false,
     },
+    small: {
+      type: Boolean,
+      default: false,
+    },
   },
 });
 
@@ -73,6 +82,10 @@ export default CommonChip;
 .common-chip {
   & {
     min-width: 5rem;
+  }
+  &.closable-spacing {
+    padding-left: 1rem;
+    padding-right: 34px;
   }
 }
 </style>

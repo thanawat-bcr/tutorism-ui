@@ -10,9 +10,9 @@ CommonCard.common-panel(
   .flex
     .w-16.h-16(v-if="icon")
       CommonIcon(:icon="icon" :color="iconColor" size="full")
-    .h-16.mx-2(style="min-width: 6rem;")
-      .title.-mt-4(:class="titleColor"): slot
-      .subtitle.-mt-4: slot(name="subtitle")
+    .h-16.mx-2(style="min-width: 6rem;" :class="textAlignment")
+      h3.-mt-4(:class="titleColor"): slot
+      .subtitle2.-mt-6: slot(name="subtitle")
 </template>
 
 <script lang="ts">
@@ -34,9 +34,12 @@ const CommonPanel = defineComponent({
       return '';
     });
 
+    const textAlignment = computed(() => `text-${props.text}`);
+
     return {
       iconColor,
       titleColor,
+      textAlignment,
     };
   },
   props: {
@@ -62,6 +65,11 @@ const CommonPanel = defineComponent({
     block: {
       type: Boolean,
       default: false,
+    },
+    text: {
+      type: String,
+      default: 'left',
+      validation: (val: string) => ['left', 'center', 'right'].indexOf(val) !== -1,
     },
   },
 });

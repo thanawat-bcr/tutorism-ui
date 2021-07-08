@@ -4,29 +4,19 @@ export default function () {
       case 'flat':
         return `text-${color}-700 bg-cool-white`;
       case 'outline':
-        return `text-${color}-700 bg-cool-white border border-solid border-${color}-700`;
-      default:
-        return `bg-${color}-700 text-cool-white`;
-    }
-  };
-  const computedCardColor = (color: string, mode = '') => {
-    switch (mode) {
-      case 'flat':
-        return `text-${color}-700 bg-white`;
-      case 'outline':
         return `text-${color}-700 bg-white border border-solid border-${color}-700`;
       default:
         return `bg-${color}-700 text-cool-white`;
     }
   };
-  const computedColorHover = (color: string, mode = '') => {
+  const computedColorWithHover = (color: string, mode = '') => {
     switch (mode) {
       case 'flat':
-        return `text-${color}-700 hover:border-${color}-500 hover:text-${color}-500 bg-cool-white hover:bg-white`;
+        return `text-${color}-700 hover:text-${color}-500 bg-cool-white hover:bg-white`;
       case 'outline':
-        return `text-${color}-700 hover:border-${color}-500 hover:text-${color}-500 bg-cool-white hover:bg-white border border-solid border-${color}-700`;
+        return `text-${color}-700 hover:border-${color}-500 hover:text-${color}-500 bg-white hover:bg-cool-white border border-solid border-${color}-700`;
       default:
-        return `bg-${color}-700 hover:bg-${color}-500 text-cool-white`;
+        return `bg-${color}-700 hover:bg-${color}-500 text-cool-white hover:text-white`;
     }
   };
   const computedColorIcon = (color: string, mode = '') => {
@@ -42,8 +32,7 @@ export default function () {
 
   return {
     computedColor,
-    computedColorHover,
+    computedColorWithHover,
     computedColorIcon,
-    computedCardColor,
   };
 }

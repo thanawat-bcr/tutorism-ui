@@ -30,7 +30,8 @@ const CommonIcon = defineComponent({
       if (props.color === '') return '#000';
       if (props.color === 'black') return '#000';
       if (props.color === 'white') return '#fff';
-      if (props.color === 'cool-white') return '#eee';
+      if (props.color === 'cool-white') return '#F6F6F6';
+      if (props.color === 'cool-gray') return '#EEEEEE';
       return colorToHex(props.color as string, props.hover as boolean);
     });
 

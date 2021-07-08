@@ -6,71 +6,106 @@
   //- h4 Hello
   //- h5 Hello
   //- p paragraph
-  .flex.flex-col.items-start
+  //- .flex.flex-col
     .flex.my-3
-      CommonButton.mx-3(size="sm" color="primary") Hello
-      CommonButton.mx-3(size="md" color="red" rounded) Hello
-      CommonButton.mx-3(size="lg" color="secondary") Hello
-      CommonButton.mx-3(size="lg" color="secondary" icon="checkbox") Hello
+      CommonButton.mx-3(color="red") Click Me
+      CommonButton.mx-3(color="green") Click Me
+      CommonButton.mx-3(color="blue") Click Me
+      CommonButton.mx-3(color="pink") Click Me
+      CommonButton.mx-3(color="secondary") Click Me
+      CommonButton.mx-3() Click Me
     .flex.my-3
-      CommonButton.mx-3(size="sm" color="primary" outline) Hello
-      CommonButton.mx-3(size="md" color="red" outline rounded) Hello
-      CommonButton.mx-3(size="lg" color="secondary" outline) Hello
-      CommonButton.mx-3(size="lg" color="secondary" outline icon="checkbox") Hello
+      CommonButton.mx-3(flat color="red") Click
+      CommonButton.mx-3(flat color="green") Click Me
+      CommonButton.mx-3(flat color="blue") Click Me
+      CommonButton.mx-3(flat color="pink") Click Me
+      CommonButton.mx-3(flat color="secondary") Click Me
+      CommonButton.mx-3(flat) Click Me
     .flex.my-3
-      CommonButton.mx-3(size="sm" color="primary" flat) Hello
-      CommonButton.mx-3(size="md" color="red" flat) Hello
-      CommonButton.mx-3(size="lg" color="secondary" flat) Hello
-      CommonButton.mx-3(size="lg" color="secondary" flat icon="checkbox") Hello
+      CommonButton.mx-3(outline color="red") Click
+      CommonButton.mx-3(outline color="green") Click Me
+      CommonButton.mx-3(outline color="blue") Click Me
+      CommonButton.mx-3(outline color="pink") Click Me
+      CommonButton.mx-3(outline color="secondary") Click Me
+      CommonButton.mx-3(outline) Click Me
     .flex.my-3
-      CommonFloatButton.mx-3(color="red" size="lg" icon="radio-button-checked")
-      CommonFloatButton.mx-3(color="red" size="lg" flat icon="radio-button-checked")
-      CommonFloatButton.mx-3(color="red" size="lg" outline icon="radio-button-checked")
+      CommonButton.mx-3(icon="calendar" color="red") Click Me
+      CommonButton.mx-3(icon="calendar" color="green") Click Me
+      CommonButton.mx-3(icon="calendar" color="blue") Click Me
+      CommonButton.mx-3(icon="calendar" color="pink") Click Me
+      CommonButton.mx-3(icon="calendar" color="secondary") Click Me
+      CommonButton.mx-3(icon="calendar" ) Click Me
     .flex.my-3
-      CommonIcon.mx-3(icon="radio-button-checked" size='lg' color='rose')
-      CommonIcon.mx-3(icon="radio-button-checked" size='lg' color='primary')
+      CommonButton.mx-3(icon="call" flat color="red") Click
+      CommonButton.mx-3(icon="call" flat color="green") Click Me
+      CommonButton.mx-3(icon="call" flat color="blue") Click Me
+      CommonButton.mx-3(icon="call" flat color="pink") Click Me
+      CommonButton.mx-3(icon="call" flat color="secondary") Click Me
+      CommonButton.mx-3(icon="call" flat) Click Me
     .flex.my-3
-      CommonChip.mx-3(color="red" outline) Helloo
-      CommonChip.mx-3(color="blue" closable flat @click="clickHandler" @close="closeHandler") Hellooooooooo
-      CommonChip.mx-3(color="primary" closable) Test Primary
+      CommonButton.mx-3(icon="show" outline color="red") Click
+      CommonButton.mx-3(icon="show" outline color="green") Click Me
+      CommonButton.mx-3(icon="show" outline color="blue") Click Me
+      CommonButton.mx-3(icon="show" outline color="pink") Click Me
+      CommonButton.mx-3(icon="show" outline color="secondary") Click Me
+      CommonButton.mx-3(icon="show" outline) Click Me
+  //- .flex.flex-col
     .flex.my-3
-      CommonCard(color="green" active @click="clickHandler").mx-3
+      CommonFloatButton.mx-3(icon="hide" color="red")
+      CommonFloatButton.mx-3(icon="hide" color="green")
+      CommonFloatButton.mx-3(icon="hide" color="blue")
+      CommonFloatButton.mx-3(icon="hide" color="pink")
+      CommonFloatButton.mx-3(icon="hide" color="secondary")
+      CommonFloatButton.mx-3(icon="hide")
+      CommonFloatButton.mx-3(flat icon="search" color="red")
+      CommonFloatButton.mx-3(flat icon="search" color="green")
+      CommonFloatButton.mx-3(flat icon="search" color="blue")
+      CommonFloatButton.mx-3(flat icon="search" color="pink")
+      CommonFloatButton.mx-3(flat icon="search" color="secondary")
+      CommonFloatButton.mx-3(flat icon="search")
+      CommonFloatButton.mx-3(outline icon="category" color="red")
+      CommonFloatButton.mx-3(outline icon="category" color="green")
+      CommonFloatButton.mx-3(outline icon="category" color="blue")
+      CommonFloatButton.mx-3(outline icon="category" color="pink")
+      CommonFloatButton.mx-3(outline icon="category" color="secondary")
+      CommonFloatButton.mx-3(outline icon="category")
+  //- .flex.flex-col
+    .flex.my-3
+      CommonChip.mx-1 Helloo
+      CommonChip.mx-1(flat) Helloo
+      CommonChip.mx-1(outline) Helloo
+      CommonChip.mx-1(closable) Helloo
+      CommonChip.mx-1(closable flat) Helloo
+      CommonChip.mx-1(closable outline) Helloo
+      CommonChip.mx-1(color="red" ) Helloo
+      CommonChip.mx-1(color="green" flat) Helloo
+      CommonChip.mx-1(color="blue" outline) Helloo
+      CommonChip.mx-1(color="pink" closable) Helloo
+      CommonChip.mx-1(color="secondary" closable flat) Helloo
+      CommonChip.mx-1(color="primary" closable outline) Helloo
+  //- .flex.flex-col
+    .flex.my-3
+      CommonCard(@click="clickHandler").mx-3
         .flex.items-center
-          h1 Hello World
+          h5 Hello World
           .w-16.h-16.ml-4
-            CommonIcon(icon="calendar" color="white" size="full")
-      CommonCard(color="secondary" active @click="clickHandler").mx-3
-        h1 Hello World
-      CommonCard(color="red" icon="time" @click="clickHandler").mx-3
-        .flex.items-center
-          .w-16.h-16.mr-4
-            CommonIcon(icon="time" color="red" size="full")
-          h1 Hello World
-      CommonCard(active @click="clickHandler" :rounded="false" :shadow="false").mx-3
-        .flex.items-center
-          h1 Hello World
+            CommonIcon(icon="calendar" size="full")
+  //- .flex.flex-col
     .flex.my-3
-      CommonPanel.mx-3(icon="menu-bento" @click="clickHandler") 200
+      CommonPanel.mx-3(icon="menu-bento" @click="clickHandler" text="center") 200
         template(#subtitle) Information
-      CommonPanel.mx-3(icon="menu-bento" color="red" @click="clickHandler") 200
+      CommonPanel.mx-3(icon="menu-bento" color="red" @click="clickHandler" text="right") 200
         template(#subtitle) Information
-      CommonPanel.mx-3(color="red" active @click="clickHandler") 300
+      CommonPanel.mx-3(color="red" active @click="clickHandler" text="center") 300
         template(#subtitle) Information
-      CommonPanel.mx-3(icon="menu-bento" active @click="clickHandler") 500
+      CommonPanel.mx-3(icon="menu-bento" active @click="clickHandler" text="right") 500
         template(#subtitle) Information
+  .flex.flex-col
     .flex.my-3
       CommonButton.mx-3(color="primary" @click="$refs.modal.open({ id: 1, title: 'Test'})") Open Modal
-      CommonButton.mx-3(color="primary" @click="$refs.confirmActionModal.open()") Open Confirm Action
-      CommonButton.mx-3(color="secondary" @click="$refs.successModal.open()") Open Success
-      CommonButton.mx-3(color="red" @click="$refs.errorModal.open()") Open Error
-      CommonButton.mx-3(color="red" @click="$refs.confirmDeleteModal.open()") Open Confirm Delete
-      CommonModal(ref="modal" closable @confirm="confirmHandler" color="green") Some Text on Modal
-        template(#confirm) Confirm purchase
-        template(#close) Cancel
-      CommonModalPreset(ref="confirmActionModal" type="confirm-action")
-      CommonModalPreset(ref="successModal" type="success")
-      CommonModalPreset(ref="errorModal" type="error")
-      CommonModalPreset(ref="confirmDeleteModal" type="confirm-delete")
+      CommonModal(ref="modal" closable @confirm="confirmHandler" color="green") Are you sure ?
+        template(#confirm) Confirm
+        template(#cancel) Cancel
 </template>
 
 <script lang="ts">
@@ -86,20 +121,11 @@ const App = defineComponent({
       (modal.value as any).close();
     };
 
-    const errorModal = ref('');
-    const confirmActionModal = ref('');
-    const successModal = ref('');
-    const confirmDeleteModal = ref('');
-
     return {
       clickHandler,
       closeHandler,
 
       modal,
-      confirmActionModal,
-      successModal,
-      errorModal,
-      confirmDeleteModal,
       confirmHandler,
     };
   },

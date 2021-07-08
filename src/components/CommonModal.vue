@@ -12,10 +12,9 @@
         flat
         style="max-width: 25rem;"
       )
-        #close(v-if="closable"): CommonIcon.absolute.top-0.right-0.m-2.cursor-pointer(icon="close" size="md" color="black" @click="close")
-        #context.h1.text-center.mb-2.break-words.w-full(style="min-height: 4rem;"): slot Text
+        #close(v-if="closable"): CommonIcon.absolute.top-0.right-0.m-4.cursor-pointer(icon="close" size="sm" color="black" @click="close")
+        #context.h5.text-center.my-3.break-words.w-full: slot Text
         #actions.flex.w-full(style="width: 22rem;")
-          CommonButton.flex-1.mx-1(:color="color" v-if="$slots.close" @click="close" flat): slot(name="close") Close
           CommonButton.flex-1.mx-1(:color="color" v-if="$slots.cancel" @click="cancelAction" flat): slot(name="cancel") Cancel
           CommonButton.flex-1.mx-1(:color="color" v-if="$slots.confirm" @click="confirmAction"): slot(name="confirm") Confirm
 </template>
@@ -38,6 +37,7 @@ const CommonModal = defineComponent({
       active.value = false;
     };
     const cancelAction = () => {
+      close();
       ctx.emit('cancel', context.value);
     };
     const confirmAction = () => {

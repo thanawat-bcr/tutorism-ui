@@ -1,5 +1,5 @@
 <template lang="pug">
-.common-card.inline-flex.p-6.transition.duration-100(:class="classes" @click="$emit('click')")
+.common-card.inline-flex.p-4.transition.duration-100(:class="classes" @click="$emit('click')")
   slot
 </template>
 
@@ -10,11 +10,11 @@ import useColorClass from '@/useColorClass';
 
 const CommonCard = defineComponent({
   setup(props) {
-    const { computedCardColor } = useColorClass();
+    const { computedColor } = useColorClass();
 
     const color = computed(() => {
-      if (props.active) return computedCardColor(props.color);
-      return computedCardColor(props.color, 'flat');
+      if (props.active) return computedColor(props.color);
+      return computedColor(props.color, 'flat');
     });
 
     const block = computed(() => (props.block ? 'w-full' : ''));

@@ -7,7 +7,7 @@ button.common-float-button.rounded-full.transition.duration-100(
   @mouseleave="hover = false"
 )
   .common-float-button-content.flex.items-center.justify-center
-    span(:class="iconSize" v-if="icon")
+    span.w-4.h-4(v-if="icon")
       CommonIcon(
         :icon='icon'
         :hover="hover"
@@ -30,24 +30,16 @@ const CommonFloatButton = defineComponent({
     const hover = ref(false);
 
     const size = computed(() => {
-      if (props.size === 'sm') return 'h-8 w-8';
-      if (props.size === 'md') return 'h-10 w-10';
-      if (props.size === 'lg') return 'h-12 w-12';
+      if (props.small) return 'h-8 w-8';
       return 'h-10 w-10';
     });
-    const iconSize = computed(() => {
-      if (props.size === 'sm') return 'h-4 w-4';
-      if (props.size === 'md') return 'h-5 w-5';
-      if (props.size === 'lg') return 'h-6 w-6';
-      return 'h-5 w-5';
-    });
 
-    const { computedColorHover, computedColorIcon } = useColorClass();
+    const { computedColorWithHover, computedColorIcon } = useColorClass();
 
     const color = computed(() => {
-      if (props.outline) return computedColorHover(props.color, 'outline');
-      if (props.flat) return computedColorHover(props.color, 'flat');
-      return computedColorHover(props.color);
+      if (props.outline) return computedColorWithHover(props.color, 'outline');
+      if (props.flat) return computedColorWithHover(props.color, 'flat');
+      return computedColorWithHover(props.color);
     });
     const iconColor = computed(() => {
       if (props.outline) return computedColorIcon(props.color, 'outline');
@@ -59,16 +51,11 @@ const CommonFloatButton = defineComponent({
 
     const classes = computed(() => `${size.value} ${color.value} ${disable.value}`);
 
-    const iconClasses = computed(() => `${iconColor.value} ${iconSize.value}`);
-
     return {
       hover,
 
       classes,
-
-      iconSize,
       iconColor,
-      iconClasses,
     };
   },
   props: {
@@ -84,10 +71,9 @@ const CommonFloatButton = defineComponent({
       type: Boolean,
       default: false,
     },
-    size: {
-      type: String,
-      default: 'md',
-      validation: (val: string) => ['sm', 'md', 'lg'].indexOf(val) !== -1,
+    small: {
+      type: Boolean,
+      default: false,
     },
     disabled: {
       type: Boolean,
