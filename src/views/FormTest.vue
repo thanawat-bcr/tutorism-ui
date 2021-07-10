@@ -1,9 +1,14 @@
 <template lang="pug">
-.form-test
+CommonCard.form-test(style="width: 800px;")
   CommonForm
-    CommonInput(v-model="user.username")
-    CommonInput(v-model="user.password")
-    CommonButton(type="submit")
+    .form--group
+      .form--group--row
+        CommonTextInput(v-model="user.email" icon="mail" placeholder="Email" rules="required|email") Email
+      .form--group--row
+        CommonTextInput(v-model="user.username" icon="user" placeholder="Username" rules="required") Username
+        CommonTextInput(v-model="user.password" icon="lock" placeholder="Password" rules="required" type="password") Password
+    .flex.justify-center
+      CommonButton(type="submit") Register
 </template>
 
 <script lang="ts">

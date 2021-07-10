@@ -1,5 +1,5 @@
 <template lang="pug">
-.common-form
+.common--form.w-full
   ValidationObserver(v-slot="{ invalid, handleSubmit }")
     form(@submit.prevent="handleSubmit(onSubmit)")
       slot
@@ -27,5 +27,15 @@ export default CommonForm;
 </script>
 
 <style lang="scss">
-// .common-form {}
+.common--form {
+  .form--group {
+    @apply flex flex-col my-2;
+    &--row {
+      @apply flex my-1;
+      .common-input {
+        @apply flex-1 mx-2;
+      }
+    }
+  }
+}
 </style>

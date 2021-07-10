@@ -14,7 +14,7 @@ import CommonCard from '@/components/CommonCard.vue';
 import CommonPanel from '@/components/CommonPanel.vue';
 import CommonModal from '@/components/CommonModal.vue';
 import CommonForm from '@/components/CommonForm.vue';
-import CommonInput from '@/components/CommonInput.vue';
+import CommonTextInput from '@/components/CommonTextInput.vue';
 
 import App from './App.vue';
 import router from './router';
@@ -35,7 +35,7 @@ Vue.component('CommonCard', CommonCard);
 Vue.component('CommonPanel', CommonPanel);
 Vue.component('CommonModal', CommonModal);
 Vue.component('CommonForm', CommonForm);
-Vue.component('CommonInput', CommonInput);
+Vue.component('CommonTextInput', CommonTextInput);
 
 Vue.config.productionTip = false;
 
