@@ -84,6 +84,12 @@ h6, .h6 {
   letter-spacing: 0.1px;
 }
 
+.subtitle3 {
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
+
 p, .body1 {
   font-size: 17px;
   line-height: 20px;
