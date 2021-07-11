@@ -34,8 +34,10 @@ const FormTest = defineComponent({
       department: '',
     });
 
-    const companiesDisplay = ['Com1', 'Com2', 'Com3', 'Com4', 'Com5', 'Com6', 'Com7', 'Com8', 'Com9', 'Com10', 'Com11', 'Com12'];
-    const companiesItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    // const companiesDisplay = ['Com1', 'Com2', 'Com3', 'Com4', 'Com5', 'Com6', 'Com7', 'Com8', 'Com9', 'Com10', 'Com11', 'Com12'];
+    // const companiesItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const companiesDisplay = ['Com1', 'Com2', 'Com3'];
+    const companiesItems = [1, 2, 3];
 
     return {
       user,

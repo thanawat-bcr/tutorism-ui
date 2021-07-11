@@ -140,28 +140,29 @@ export default CommonSelect;
 .common-select {
   &-container {
     @apply my-1 h-10 w-full;
-    .common-select-field {
-      @apply h-full w-full bg-cool-gray rounded-lg outline-none text-black;
-    }
-    .common-select-option-container {
-      transform-origin: top center;
-      margin-top: -40px;
-      z-index: 50;
-      position: relative;
-      height: 12.5rem;
-      overflow: auto;
-    }
-    .common-select-option-scroll {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-    }
-    .common-select-option-item {
-      @apply h-10 w-full hover:bg-cool-white text-black flex items-center px-4;
-    }
-    .common-select-icon, .common-select-placeholder, .common-select-value {
-      top: 50%;
-      transform: translateY(-50%);
+    .common-select {
+      &-field {
+        @apply h-full w-full bg-cool-gray rounded-lg outline-none text-black;
+      }
+      &-option-container {
+        transform-origin: top center;
+        z-index: 50;
+        position: relative;
+        height: 12.5rem;
+        overflow: auto;
+      }
+      &-option-scroll {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+      &-option-item {
+        @apply h-10 w-full hover:bg-cool-white text-black flex items-center px-4;
+      }
+      &-icon, &-placeholder, &-value {
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
   .error {
