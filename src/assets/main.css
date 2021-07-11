@@ -5,3 +5,15 @@
 .card-shadow {
   box-shadow: 0 0 10px 4px #00000040;
 }
+
+/* REMOVE select default dropdown arrow */
+select {
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Chrome */
+  -webkit-appearance: none;
+}
+/* For IE10 */
+select::-ms-expand {
+  display: none;
+}

@@ -15,6 +15,7 @@ import CommonPanel from '@/components/CommonPanel.vue';
 import CommonModal from '@/components/CommonModal.vue';
 import CommonForm from '@/components/CommonForm.vue';
 import CommonTextInput from '@/components/CommonTextInput.vue';
+import CommonSelect from '@/components/CommonSelect.vue';
 
 import App from './App.vue';
 import router from './router';
@@ -36,6 +37,7 @@ Vue.component('CommonPanel', CommonPanel);
 Vue.component('CommonModal', CommonModal);
 Vue.component('CommonForm', CommonForm);
 Vue.component('CommonTextInput', CommonTextInput);
+Vue.component('CommonSelect', CommonSelect);
 
 Vue.config.productionTip = false;
 

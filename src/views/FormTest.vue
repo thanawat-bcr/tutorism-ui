@@ -6,7 +6,10 @@ CommonCard.form-test(style="width: 800px;")
         CommonTextInput(v-model="user.email" icon="mail" placeholder="Email" rules="required|email") Email
       .form--group--row
         CommonTextInput(v-model="user.username" icon="user" placeholder="Username" rules="required") Username
-        CommonTextInput(v-model="user.password" icon="lock" placeholder="Password" rules="required" type="password") Password
+        CommonTextInput(v-model="user.password" placeholder="Password" rules="required" type="password") Password
+      .form--group--row
+        CommonSelect(v-model="user.company" icon="user-group" placeholder="Company" rules="required") Company
+        //- CommonSelect(v-model="user.department" placeholder="Department" rules="required") Department
     .flex.justify-center
       CommonButton(type="submit") Register
 </template>
@@ -20,6 +23,8 @@ const FormTest = defineComponent({
       username: '',
       password: '',
       email: '',
+      company: '',
+      department: '',
     });
 
     return {

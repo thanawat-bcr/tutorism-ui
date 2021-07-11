@@ -1,5 +1,5 @@
 <template lang="pug">
-.common-input
+.common-input.common-text-input
   ValidationProvider(:rules="rules" v-slot="{ errors }")
     .flex.flex-col.h-24
       label.subtitle2.text-primary-700: slot Input Label
