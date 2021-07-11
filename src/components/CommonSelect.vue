@@ -1,5 +1,6 @@
 <template lang="pug">
 .common-input.common-select
+  .common-select-back-drop.fixed.inset-0(v-if="showDropdown" @click="toggleDropdown")
   ValidationProvider(:rules="rules" v-slot="{ errors }")
     .flex.flex-col.h-24
       label.subtitle2.text-primary-700: slot Input Label
@@ -16,8 +17,8 @@
           .card-shadow.body2.common-select-option-container(
             v-show="showDropdown"
             ref="commonSelectOptionContainerRef"
+            :style="`height: ${containerHeight}`"
           )
-            .common-select-back-drop.fixed.inset-0(@click="toggleDropdown")
             .common-select-option-scroll
               .common-select-option-item(
                 v-for="(item, index) in dropdownItems.display"
@@ -38,8 +39,6 @@
 import {
   computed,
   defineComponent,
-  onMounted,
-  reactive,
   ref,
 } from '@vue/composition-api';
 
@@ -101,11 +100,17 @@ const CommonSelect = defineComponent({
       return 'pl-4 pr-14';
     });
 
+    const containerHeight = computed(() => {
+      if (props.items.length > 5) return '12.5rem';
+      return `${props.items.length * 2.5}rem`;
+    });
+
     const classes = computed(() => `${inputSpacing.value}`);
 
     return {
       dropdownItems,
       classes,
+      containerHeight,
 
       showDropdown,
       toggleDropdown,
@@ -148,7 +153,6 @@ export default CommonSelect;
         transform-origin: top center;
         z-index: 50;
         position: relative;
-        height: 12.5rem;
         overflow: auto;
       }
       &-option-scroll {
