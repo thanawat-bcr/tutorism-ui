@@ -4,28 +4,30 @@
     .flex.flex-col.h-24
       label.subtitle2.text-primary-700: slot Input Label
       .common-select-container.relative
-        CommonIcon.common-select-icon.absolute.mx-4.opacity-70(v-if="icon" :icon="icon" color="black")
+        CommonIcon.common-select-icon.absolute.mx-4.opacity-70.pointer-events-none(v-if="icon" :icon="icon" color="black")
         CommonIcon.common-select-icon.absolute.mx-4.right-0.opacity-70.pointer-events-none(icon="arrow-down" color="black")
-        select.common-select-field.body2(
-          :class="classes"
+        select.common-select-field(
           :value="value"
           @click="toggleDropdown"
         )
         //- HACK: v-if -> v-show [ FIX LATER :( ]
-        .card-shadow.body2.common-select-option-container(
-          v-show="showDropdown"
-          ref="commonSelectOptionContainerRef"
-        )
-          .common-select-option-scroll
-            .common-select-option-item(
-              v-for="(item, index) in items"
-              :key="item"
-              :class="`${index == selectedDropdownIndex ? 'bg-cool-white' : 'bg-white'}`"
-              @mouseover="selectedDropdownIndex = index"
-              @click="selectHandler"
-            ) {{ item }}
-        .body2.absolute.common-select-value.text-black(:class="classes" v-if="value") {{ value }}
-        .body2.absolute.common-select-placeholder.text-black.opacity-50(:class="classes" v-else) {{ placeholder }}
+        //- Problem: Can't find DOM if not render yet, so use v-show to just hide but rendered
+        transition(name="dropdown")
+          .card-shadow.body2.common-select-option-container(
+            v-show="showDropdown"
+            ref="commonSelectOptionContainerRef"
+          )
+            .common-select-back-drop.fixed.inset-0(@click="toggleDropdown")
+            .common-select-option-scroll
+              .common-select-option-item(
+                v-for="(item, index) in dropdownItems.display"
+                :key="item"
+                :class="`${index == selectedDropdownIndex ? 'bg-cool-white' : 'bg-white'}`"
+                @mouseover="selectedDropdownIndex = index"
+                @click="selectHandler"
+              ) {{ item }}
+        .body2.absolute.common-select-value.text-black.pointer-events-none(:class="classes" v-if="value") {{ selectedDropdownValue }}
+        .body2.absolute.common-select-placeholder.text-black.opacity-50.pointer-events-none(:class="classes" v-else) {{ placeholder }}
       transition(name="error")
         span.text-red-500.error.inline-flex.items-center.self-start(v-if="errors.length > 0")
           CommonIcon.mx-1(icon="danger-circle" color="red" size="sm")
@@ -48,16 +50,21 @@ const CommonSelect = defineComponent({
     ValidationProvider,
   },
   setup(props, ctx) {
-    const items = ['1', '2', '3', '4', '5', '11', '12', '13', '14', '15'];
+    const dropdownItems = computed(() => ({
+      display: props.display || props.items,
+      items: props.items,
+    }));
 
     const showDropdown = ref(false);
     const toggleDropdown = () => {
       // eslint-disable-next-line
-      if (showDropdown.value) window.removeEventListener('keyup', keyPressHandler);
+      if (showDropdown.value) window.removeEventListener('keydown', keyPressHandler);
       // eslint-disable-next-line
-      else window.addEventListener('keyup', keyPressHandler);
+      else window.addEventListener('keydown', keyPressHandler);
       showDropdown.value = !showDropdown.value;
     };
+
+    const selectedDropdownValue = computed(() => dropdownItems.value.display[dropdownItems.value.items.indexOf(props.value)]);
 
     const selectedDropdownIndex = ref(0);
 
@@ -68,27 +75,24 @@ const CommonSelect = defineComponent({
       if (event.key === 'ArrowUp' && selectedDropdownIndex.value > 0) {
         selectedDropdownIndex.value -= 1;
       }
-      if (event.key === 'ArrowDown' && selectedDropdownIndex.value < items.length - 1) {
+      if (event.key === 'ArrowDown' && selectedDropdownIndex.value < props.items.length - 1) {
         selectedDropdownIndex.value += 1;
       }
       if (event.key === 'Enter') {
         // eslint-disable-next-line
         selectHandler();
+
+        event.preventDefault();
       }
       const containerDOM = commonSelectOptionContainerRef.value;
       (containerDOM as any).scrollTop = selectorContainerPointer.value - 40;
     };
 
     const selectHandler = () => {
-      window.removeEventListener('keyup', keyPressHandler);
+      window.removeEventListener('keydown', keyPressHandler);
       showDropdown.value = false;
-      console.log(items[selectedDropdownIndex.value]);
-      ctx.emit('input', items[selectedDropdownIndex.value]);
+      ctx.emit('input', props.items[selectedDropdownIndex.value]);
     };
-
-    // onMounted(() => {
-    //   window.addEventListener('keyup', keyPressHandler);
-    // });
 
     // CSS CLASSES
 
@@ -100,14 +104,14 @@ const CommonSelect = defineComponent({
     const classes = computed(() => `${inputSpacing.value}`);
 
     return {
+      dropdownItems,
       classes,
-      items,
 
       showDropdown,
       toggleDropdown,
 
       selectedDropdownIndex,
-
+      selectedDropdownValue,
       selectHandler,
 
       commonSelectOptionContainerRef,
@@ -119,6 +123,13 @@ const CommonSelect = defineComponent({
     icon: {},
     rules: {},
     placeholder: {},
+    items: {
+      type: Array,
+      required: true,
+    },
+    display: {
+      type: Array,
+    },
   },
 });
 
@@ -133,6 +144,8 @@ export default CommonSelect;
       @apply h-full w-full bg-cool-gray rounded-lg outline-none text-black;
     }
     .common-select-option-container {
+      transform-origin: top center;
+      margin-top: -40px;
       z-index: 50;
       position: relative;
       height: 12.5rem;
@@ -162,10 +175,10 @@ export default CommonSelect;
   }
   .dropdown {
     &-enter-active {
-      animation: dropdown-down .3s;
+      animation: dropdown-show .2s;
     }
     &-leave-active {
-      animation: dropdown-down .3s reverse;
+      animation: dropdown-show .2s reverse;
     }
   }
   @keyframes error-in {
@@ -179,12 +192,12 @@ export default CommonSelect;
       transform: scale(1);
     }
   }
-  @keyframes dropdown-down {
+  @keyframes dropdown-show {
     0% {
-      transform: rotate(0);
+      transform: scale(0);
     }
     100% {
-      transform: rotate(180deg);
+      transform: scale(1);
     }
   }
 }
