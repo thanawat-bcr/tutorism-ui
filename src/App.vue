@@ -104,8 +104,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api';
+import { defineComponent, onMounted, ref } from '@vue/composition-api';
 import FormTest from '@/views/FormTest.vue';
+
+import useDateFormat from '@/useDateFormat';
 
 const App = defineComponent({
   components: {
@@ -119,6 +121,16 @@ const App = defineComponent({
     const confirmHandler = (ctx: any) => {
       (modal.value as any).close();
     };
+
+    onMounted(() => {
+      const NOW = new Date();
+      console.log(useDateFormat(NOW).dateFullThaiDisplay());
+      console.log(useDateFormat(NOW).dateShortThaiDisplay());
+      console.log(useDateFormat(NOW).dateFullEngDisplay());
+      console.log(useDateFormat(NOW).dateShortEngDisplay());
+      console.log(useDateFormat().timeFormat());
+      console.log(useDateFormat().timeFormatAMPM());
+    });
 
     return {
       clickHandler,
