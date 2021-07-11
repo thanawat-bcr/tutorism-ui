@@ -6,7 +6,8 @@
       label.subtitle2.text-primary-700: slot Input Label
       .common-select-container.relative
         CommonIcon.common-select-icon.absolute.mx-4.opacity-70.pointer-events-none(v-if="icon" :icon="icon" color="black")
-        CommonIcon.common-select-icon.absolute.mx-4.right-0.opacity-70.pointer-events-none(icon="arrow-down" color="black")
+        CommonIcon.common-select-icon.absolute.mx-4.right-0.opacity-70.pointer-events-none(v-if="showDropdown" icon="arrow-up" color="black")
+        CommonIcon.common-select-icon.absolute.mx-4.right-0.opacity-70.pointer-events-none(v-else icon="arrow-down" color="black")
         select.common-select-field(
           :value="value"
           @click="toggleDropdown"
