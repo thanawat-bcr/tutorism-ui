@@ -2,12 +2,12 @@
 CommonCard.form-test(style="width: 800px;")
   CommonForm
     .form--group
-      .form--group--row
+      .form--row
         CommonTextInput(v-model="user.email" icon="mail" placeholder="Email" rules="required|email") Email
-      .form--group--row
+      .form--row
         CommonTextInput(v-model="user.username" icon="user" placeholder="Username" rules="required") Username
         CommonTextInput(v-model="user.password" placeholder="Password" rules="required" type="password") Password
-      .form--group--row
+      .form--row
         CommonSelect(
           v-model="user.company"
           icon="user-group"

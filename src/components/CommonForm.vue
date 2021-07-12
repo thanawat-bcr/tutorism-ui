@@ -30,7 +30,7 @@ export default CommonForm;
 .common--form {
   .form--group {
     @apply flex flex-col my-2;
-    &--row {
+    .form--row {
       @apply flex my-1;
       .common-input {
         @apply flex-1 mx-2;

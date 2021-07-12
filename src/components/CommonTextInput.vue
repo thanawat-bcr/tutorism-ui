@@ -1,11 +1,11 @@
 <template lang="pug">
-.common-input.common-text-input
+.common-input.common-input__text
   ValidationProvider(:rules="rules" v-slot="{ errors }")
-    .flex.flex-col.h-24
+    .common-input__text__container
       label.subtitle2.text-primary-700: slot Input Label
-      .common-input-container.relative
-        CommonIcon.common-input-icon.absolute.mx-4.opacity-70(v-if="icon" :icon="icon" color="black")
-        input.common-input-field.body2(
+      .common-input__text__field
+        CommonIcon.common-input__text__icon(v-if="icon" :icon="icon" color="black")
+        input.body2.common-input__text__input(
           :value="value"
           :class="classes"
           :placeholder="placeholder"
@@ -13,9 +13,9 @@
           @input="$emit('input', $event.target.value)"
           class="placeholder-black placeholder-opacity-50"
         )
-        CommonIcon.common-input-icon.absolute.mx-4.cursor-pointer.right-0.opacity-70(v-if="type === 'password'" :icon="showPassword ? 'show' : 'hide'" color="black" @click="togglePassword")
+        CommonIcon.common-input__text__icon.right-0(v-if="type === 'password'" :icon="showPassword ? 'show' : 'hide'" color="black" @click="togglePassword")
       transition(name="error")
-        span.text-red-500.error.inline-flex.items-center.self-start(v-if="errors.length > 0")
+        span.common-input__error__container(v-if="errors.length > 0")
           CommonIcon.mx-1(icon="danger-circle" color="red" size="sm")
           span.subtitle3 {{ errors[0] }}
 </template>
@@ -71,19 +71,31 @@ export default CommonTextInput;
 </script>
 
 <style lang="scss">
+// common-input__text
 .common-input {
-  &-container {
-    @apply my-1 h-10 w-full;
-    .common-input-field {
-      @apply h-full w-full bg-cool-gray rounded-lg outline-none text-black
+  &__text {
+    &__container {
+      @apply flex flex-col h-24;
     }
-    .common-input-icon {
+    &__field {
+      @apply my-1 h-10 w-full relative;
+    }
+    &__icon {
+      @apply absolute mx-4 opacity-70;
       top: 50%;
       transform: translateY(-50%);
     }
+    &__input {
+      @apply h-full w-full bg-cool-gray rounded-lg outline-none text-black;
+    }
+  }
+  &__error {
+    &__container {
+      transform-origin: center top;
+      @apply text-red-500 inline-flex items-center self-start;
+    }
   }
   .error {
-    transform-origin: center;
     &-enter-active {
       animation: error-in .3s;
     }
